@@ -37,4 +37,15 @@ public class ExprScriptCompiler {
         }
         return num;
     }
+
+    /* strtonSize : 文字列から数字が続く長さを求める */
+    private int strtonSize(String target) {
+        int idx = 0;
+        for( ; idx < target.length(); ++ idx) {
+            if(!('0' <= target.charAt(idx) && target.charAt(idx) <= '9')) {
+                return idx;
+            }
+        }
+        return idx;
+    }
 }
