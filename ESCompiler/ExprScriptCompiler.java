@@ -5,25 +5,13 @@ public class ExprScriptCompiler {
     private String script;
     private Node root;
 
-    public ExprScriptCompiler() {
-        this.setScript("");
-    }
-
     public ExprScriptCompiler(String script) {
-        this.setScript(script);
-    }
-
-    public void setScript(String script) {
         this.script = script;
     }
 
-    public void compile() {
-        this.root = new Node();
-    }
+    public void compile() {}
 
-    private void compilerExpr() {
-        
-    }
+    private void compilerExpr() {}
 
     /* strton : 文字列から数字を読み取る */
     private double strton(String target) {
