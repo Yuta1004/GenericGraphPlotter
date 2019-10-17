@@ -3,3 +3,5 @@ java
 javac
 
 *.class
+
+.DS_Store
