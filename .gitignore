@@ -1,3 +1,5 @@
 appletviewer
 java
 javac
+
+*.class
