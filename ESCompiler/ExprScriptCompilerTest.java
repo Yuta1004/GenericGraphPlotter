@@ -1,6 +1,6 @@
-import ESCompiler.ExprScriptCompiler;
+package ESCompiler;
 
-class ExprScriptCompilerTest {
+public class ExprScriptCompilerTest {
 
     public static void main(String[] args) {
         test1();

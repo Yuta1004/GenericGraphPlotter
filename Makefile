@@ -8,7 +8,6 @@ run:
 
 compile: Main.java ExprScriptCompiler*
 	$(JAVAC) Main.java
-	$(JAVAC) ExprScriptCompilerTest.java
 
 run-applet: Main.java
 	$(APPLETVIEWER) Main.java
@@ -17,8 +16,8 @@ run-normal:
 	$(JAVA) Main
 
 test:
-	make compile
-	$(JAVA) ExprScriptCompilerTest
+	$(JAVAC) ESCompiler/ExprScriptCompilerTest.java
+	$(JAVA) ESCompiler/ExprScriptCompilerTest
 
 clean:
 	rm -rf *.class
