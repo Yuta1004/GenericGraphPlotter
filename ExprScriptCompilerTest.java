@@ -1,3 +1,5 @@
+import ESCompiler.ExprScriptCompiler;
+
 class ExprScriptCompilerTest {
 
     public static void main(String[] args) {

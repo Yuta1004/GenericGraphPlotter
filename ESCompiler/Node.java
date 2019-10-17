@@ -1,3 +1,5 @@
+package ESCompiler;
+
 public class Node {
     public Node left, right;
     public double value;
