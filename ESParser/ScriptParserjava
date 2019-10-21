@@ -1,6 +1,6 @@
-package ESCompiler;
+package ESParser;
 
-public class ScriptCompiler {
+public class ScriptParser {
 
     private String script;
     private Node root;

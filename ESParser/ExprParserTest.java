@@ -1,6 +1,6 @@
-package ESCompiler;
+package ESParser;
 
-public class ExprCompilerTest {
+public class ExprParserTest {
 
     public static void main(String[] args) {
         test1();
@@ -9,19 +9,19 @@ public class ExprCompilerTest {
     }
 
     private static void test1() {
-        ExprCompiler ec = new ExprCompiler("1004 + 1204");
+        ExprParser ec = new ExprParser("1004 + 1204");
         ec.compile();
         valid(ec.calc(), 1004 + 1204);
     }
 
     private static void test2() {
-        ExprCompiler ec = new ExprCompiler("2 * 3");
+        ExprParser ec = new ExprParser("2 * 3");
         ec.compile();
         valid(ec.calc(), 2 * 3);
     }
 
     private static void test3() {
-        ExprCompiler ec = new ExprCompiler("10 * 20 + 30 * 40");
+        ExprParser ec = new ExprParser("10 * 20 + 30 * 40");
         ec.compile();
         valid(ec.calc(), 10 * 20 + 30 * 40);
     }

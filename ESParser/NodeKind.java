@@ -1,4 +1,4 @@
-package ESCompiler;
+package ESParser;
 
 public enum NodeKind {
     UNDEFINED,

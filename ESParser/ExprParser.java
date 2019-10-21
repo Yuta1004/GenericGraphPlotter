@@ -1,11 +1,11 @@
-package ESCompiler;
+package ESParser;
 
-public class ExprCompiler {
+public class ExprParser {
 
     private Node root;
     private String expr;
 
-    public ExprCompiler(String expr) {
+    public ExprParser(String expr) {
         this.expr = expr;
     }
 
@@ -14,7 +14,7 @@ public class ExprCompiler {
     }
 
     public double calc() {
-        return calcChild(root); 
+        return calcChild(root);
     }
 
     private double calcChild(Node node) {
@@ -22,7 +22,7 @@ public class ExprCompiler {
 
         double leftVal = calcChild(node.left);
         double rightVal = calcChild(node.right);
-   
+
         switch(node.kind){
         case ADD:
             return leftVal + rightVal;
@@ -32,13 +32,13 @@ public class ExprCompiler {
 
         case MUL:
             return leftVal * rightVal;
- 
+
         case DIV:
             return leftVal / rightVal;
 
         default:
             return 0;
-        } 
+        }
     }
 
     /* expr = add */
