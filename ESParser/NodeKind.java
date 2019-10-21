@@ -1,15 +1,12 @@
 package ESParser;
 
 enum NodeKind {
-    UNDEFINED,
-    NUM,
-    VAR,
-    ADD,
-    SUB,
-    MUL,
-    DIV,
-    SIN,
-    COS,
-    ABS,
-    LOG;
+    /* 値 */
+    UNDEFINED, NUM, VAR,
+
+    /* 演算子 */
+    ADD, SUB, MUL, DIV, LT, LTE, EQ, NEQ,
+
+    /* 関数 */
+    SIN, COS, ABS, LOG;
 }
