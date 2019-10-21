@@ -13,6 +13,34 @@ public class ExprCompiler {
         root = expr();
     }
 
+    public double calc() {
+        return calcChild(root); 
+    }
+
+    private double calcChild(Node node) {
+        if(node.kind == NodeKind.NUM) return node.value;
+
+        double leftVal = calcChild(node.left);
+        double rightVal = calcChild(node.right);
+   
+        switch(node.kind){
+        case ADD:
+            return leftVal + rightVal;
+
+        case SUB:
+            return leftVal - rightVal;
+
+        case MUL:
+            return leftVal * rightVal;
+ 
+        case DIV:
+            return leftVal / rightVal;
+
+        default:
+            return 0;
+        } 
+    }
+
     /* expr = add */
     private Node expr() {
         return add();
@@ -24,12 +52,12 @@ public class ExprCompiler {
 
         while(true) {
             if(checkChar('+')) {
-                node = new Node(node, mul(), 0, NodeKind.ADD.val);
+                node = new Node(node, mul(), 0, NodeKind.ADD);
                 continue;
             }
        
             if(checkChar('-')) {
-                node = new Node(node, mul(), 0, NodeKind.SUB.val);
+                node = new Node(node, mul(), 0, NodeKind.SUB);
                 continue;
             }
             break;
@@ -43,12 +71,12 @@ public class ExprCompiler {
 
         while(true) {
             if(checkChar('*')) {
-                node = new Node(node, num(), 0, NodeKind.MUL.val);
+                node = new Node(node, num(), 0, NodeKind.MUL);
                 continue;
             }
        
             if(checkChar('/')) {
-                node = new Node(node, num(), 0, NodeKind.DIV.val);
+                node = new Node(node, num(), 0, NodeKind.DIV);
                 continue;
             }
             break;
@@ -58,7 +86,7 @@ public class ExprCompiler {
 
     /* num = 数 */
     private Node num() {
-        return new Node(null, null, getNum(), NodeKind.NUM.val);
+        return new Node(null, null, getNum(), NodeKind.NUM);
     }
 
     /* getNum : 式の先頭から字を読み取る */
