@@ -53,12 +53,16 @@ public class ExprParserTest {
     }
 
     private static void test7() {
-        int x = 1, y = 1;
         ExprParser ec = new ExprParser("sin(x) + cos(y) + 2");
-        ec.setVar("x", x);
-        ec.setVar("y", y);
         ec.compile();
-        valid(ec.calc(), Math.sin(x) + Math.cos(y) + 2);
+
+        for(int idx = 0; idx < 10; ++ idx) {
+            double radX = Math.toRadians(idx);
+            double radY = Math.toRadians(idx + 30);
+            ec.setVar("x", radX);
+            ec.setVar("y", radY);
+            valid(ec.calc(), Math.sin(radX) + Math.cos(radY) + 2);
+        }
     }
 
     private static void valid(double a, double b) {
