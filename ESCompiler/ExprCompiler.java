@@ -10,14 +10,12 @@ public class ExprCompiler {
     }
 
     public void compile() {
-        System.out.println(add().value);
-        System.out.println(expr);
+        root = expr();
     }
 
-
-    /* expr = add | "(" expr ")" */
+    /* expr = add */
     private Node expr() {
-        return null;        
+        return add();
     }
 
     /* add = mul ("+" mul | "-" mul)* */
