@@ -9,6 +9,7 @@ public class ExprParserTest {
         test4();
         test5();
         test6();
+        test7();
     }
 
     private static void test1() {
@@ -49,6 +50,15 @@ public class ExprParserTest {
         ec.setVar("z", z);
         ec.compile();
         valid(ec.calc(), 2 * x / y + z);
+    }
+
+    private static void test7() {
+        int x = 1, y = 1;
+        ExprParser ec = new ExprParser("sin(x) + cos(y) + 2");
+        ec.setVar("x", x);
+        ec.setVar("y", y);
+        ec.compile();
+        valid(ec.calc(), Math.sin(x) + Math.cos(y) + 2);
     }
 
     private static void valid(double a, double b) {
