@@ -10,9 +10,7 @@ public class ExprCompiler {
     }
 
     public void compile() {
-        Node tmp = new Node(null, null, getNum(), NodeKind.UNDEFINED.val); 
-        skipSpace();
-        System.out.println(tmp.value);
+        System.out.println(num().value);
         System.out.println(expr);
     }
 
@@ -34,7 +32,8 @@ public class ExprCompiler {
 
     /* num = 数 */
     private Node num() {
-        return null;
+        skipSpace();
+        return new Node(null, null, getNum(), NodeKind.NUM.val);
     }
 
     /* getNum : 式の先頭から字を読み取る */
