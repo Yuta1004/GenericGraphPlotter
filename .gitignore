@@ -3,5 +3,7 @@ java
 javac
 
 *.class
+*.swp
 
 .DS_Store
+
