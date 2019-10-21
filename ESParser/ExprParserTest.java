@@ -45,10 +45,10 @@ public class ExprParserTest {
     private static void test6() {
         int x = 10, y = 2, z = 6;
         ExprParser ec = new ExprParser("2 * x / y + z");
+        ec.compile();
         ec.setVar("x", x);
         ec.setVar("y", y);
         ec.setVar("z", z);
-        ec.compile();
         valid(ec.calc(), 2 * x / y + z);
     }
 

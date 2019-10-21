@@ -51,6 +51,15 @@ public class ExprParser {
         case COS:
             return Math.cos(leftVal);
 
+        case VAR:
+            if(var.containsKey(node.varName)) {
+                return var.get(node.varName);
+            }
+            else {
+                System.err.println("未定義の変数が使用されました : " + node.varName);
+                return 0;
+            }
+
         default:
             return 0;
         }
@@ -126,8 +135,8 @@ public class ExprParser {
         }
 
         String varName = getVarName();
-        if(var.containsKey(varName)) {
-            return new Node(var.get(varName));
+        if(varName.length() > 0) {
+            return new Node(varName);
         }
 
         return new Node(getNum());
