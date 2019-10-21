@@ -13,6 +13,7 @@ public class ScriptParser {
     public ScriptParser(String script) {
         this.script = script;
         this.var = new HashMap<String, Double>();
+        this.expr = new ArrayList<ExprParser>();
     }
 
     public void parse() {
@@ -23,7 +24,10 @@ public class ScriptParser {
             if(line.startsWith("var")) {
                 line = line.substring(3, line.length());
                 for(String varName: line.split(",")) {
-                    var.put(varName.replace(" ", ""), 0.0);
+                    varName = varName.replace(" ", "");
+                    if(checkVarName(varName)) {
+                        var.put(varName, 0.0);
+                    }
                 }
                 continue;
             }
@@ -54,5 +58,14 @@ public class ScriptParser {
             ep.setVar(varName, var.get(varName));
         }
         return ep;
+    }
+
+    /* checkVarName : 変数名として正しいものになっているか検証する */
+    private boolean checkVarName(String varName) {
+        boolean result = true;
+        for(char ch: varName.toCharArray()) {
+            result = result && (('a' <= ch && ch <= 'z') || ('A' <= ch && ch <= 'Z') || ch == '_');
+        }
+        return result;
     }
 }
