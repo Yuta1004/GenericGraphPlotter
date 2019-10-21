@@ -11,4 +11,13 @@ class ScriptParserTest {
         parser.parse();
     }
 
+    private static void test2() {
+        String script[] = {
+            "var a, b",
+            "plot sin(a) + cos(b)",
+        };
+        ScriptParser parser = new ScriptParser(String.join("\n", script));
+        parser.parse();
+    }
+
 }

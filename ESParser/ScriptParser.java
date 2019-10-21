@@ -1,12 +1,14 @@
 package ESParser;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class ScriptParser {
 
     private String script;
     private Node root;
     private HashMap<String, Double> var;
+    private ArrayList<ExprParser> expr;
 
     public ScriptParser(String script) {
         this.script = script;
@@ -23,6 +25,17 @@ public class ScriptParser {
                 for(String varName: line.split(",")) {
                     var.put(varName.replace(" ", ""), 0.0);
                 }
+                continue;
+            }
+
+            // グラフ追加
+            if(line.startsWith("plot")) {
+                line = line.substring(4, line.length());
+                ExprParser ep = new ExprParser(line);
+                ep = setVar(ep);
+                ep.parse();
+                expr.add(ep);
+                continue;
             }
         }
     }
@@ -33,5 +46,13 @@ public class ScriptParser {
             target = target.substring(1, target.length());
         }
         return target;
+    }
+
+    /* setVar : 宣言されている変数全てをExprParserに渡す */
+    private ExprParser setVar(ExprParser ep) {
+        for(String varName: var.keySet()) {
+            ep.setVar(varName, var.get(varName));
+        }
+        return ep;
     }
 }
