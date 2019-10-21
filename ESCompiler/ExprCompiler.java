@@ -10,10 +10,31 @@ public class ExprCompiler {
     }
 
     public void compile() {
-        Node tmp = new Node(null, null, strton(expr), NodeKind.Undefined.val); 
+        Node tmp = new Node(null, null, strton(expr), NodeKind.UNDEFINED.val); 
         expr = expr.substring(strtonSize(this.expr), expr.length());
         System.out.println(tmp.value);
-        System.out.println(expr);
+        System.out.println(skipSpace(expr));
+    }
+
+
+    /* expr = add | "(" expr ")" */
+    private Node expr() {
+        return null;        
+    }
+
+    /* add = mul ("+" mul | "-" mul)* */
+    private Node add() {
+        return null;
+    }
+
+    /* mul = num ("*" num | "-" num)* */
+    private Node mul() {
+        return null;
+    }
+
+    /* num = 数 */
+    private Node num() {
+        return null;
     }
 
     /* strton : 文字列から数字を読み取る */
@@ -38,5 +59,13 @@ public class ExprCompiler {
             }
         }
         return idx;
+    }
+
+    /* skipSpace : 先頭にある空白を読み飛ばす*/
+    private String skipSpace(String target) {
+        while(target.length() >= 0 && target.charAt(0) == ' ') {
+            target = target.substring(1, target.length());
+        }
+        return target;
     }
 }
