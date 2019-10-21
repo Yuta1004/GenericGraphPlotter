@@ -17,7 +17,11 @@ public class ScriptParser {
     }
 
     public void parse() {
-        for(String line: script.split("\n")) {
+        ArrayList<Integer> loopStack = new ArrayList<Integer>();
+        String splitedScript[] = script.split("\n");
+
+        for(int idx = 0; idx < splitedScript.length; ++ idx) {
+            String line = splitedScript[idx];
             line = skipSpace(line);
 
             // 変数定義
@@ -52,6 +56,19 @@ public class ScriptParser {
                     ep = setVar(ep);
                     var.put(left, ep.calc());
                 }
+                continue;
+            }
+
+            // loop
+            if(line.startsWith("loop")) {
+                loopStack.add(idx);
+                continue;
+            }
+
+            // end
+            if(line.replace(" ", "").equals("end") && loopStack.size() > 0) {
+                idx = loopStack.get(loopStack.size()-1) - 1;
+                loopStack.remove(loopStack.size()-1);
                 continue;
             }
         }
