@@ -10,7 +10,7 @@ public class ExprCompiler {
     }
 
     public void compile() {
-        System.out.println(mul().value);
+        System.out.println(add().value);
         System.out.println(expr);
     }
 
@@ -22,7 +22,21 @@ public class ExprCompiler {
 
     /* add = mul ("+" mul | "-" mul)* */
     private Node add() {
-        return null;
+        Node node = mul();
+
+        while(true) {
+            if(checkChar('+')) {
+                node = new Node(node, mul(), 0, NodeKind.ADD.val);
+                continue;
+            }
+       
+            if(checkChar('-')) {
+                node = new Node(node, mul(), 0, NodeKind.SUB.val);
+                continue;
+            }
+            break;
+        }
+        return node;
     }
 
     /* mul = num ("*" num | "-" num)* */
@@ -31,12 +45,12 @@ public class ExprCompiler {
 
         while(true) {
             if(checkChar('*')) {
-                node = new Node(node, num(), 0, NodeKind.ADD.val);
+                node = new Node(node, num(), 0, NodeKind.MUL.val);
                 continue;
             }
        
             if(checkChar('/')) {
-                node = new Node(node, num(), 0, NodeKind.SUB.val);
+                node = new Node(node, num(), 0, NodeKind.DIV.val);
                 continue;
             }
             break;
