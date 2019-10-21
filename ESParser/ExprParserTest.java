@@ -12,6 +12,7 @@ class ExprParserTest {
         test7();
         test8();
         test9();
+        test10();
     }
 
     private static void test1() {
@@ -77,6 +78,12 @@ class ExprParserTest {
         ExprParser ep = new ExprParser("sin(PI) + abs(cos(PI))");
         ep.parse();
         valid(ep.calc(), Math.sin(Math.PI) + Math.abs(Math.cos(Math.PI)));
+    }
+
+    private static void test10() {
+        ExprParser ep = new ExprParser("((1 > 0)*2) * ((3 <= 3)*3) * ((10 == 10)*5) * ((12 != 4)*7)");
+        ep.parse();
+        valid(ep.calc(), 210);
     }
 
     private static void valid(double a, double b) {

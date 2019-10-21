@@ -87,7 +87,32 @@ public class ExprParser {
 
     /* expr = add */
     private Node expr() {
-        return add();
+        return eval();
+    }
+
+    /* eval = add (">" add | ">=" add | "==" add | "!=" add)? */
+    private Node eval() {
+        Node node = add();
+
+        if(checkPrefix(">=")) {
+            return new Node(node, add(), NodeKind.LTE);
+        }
+        else if(checkPrefix("<=")) {
+            return new Node(add(), node, NodeKind.LTE);
+        }
+        else if(checkPrefix(">")) {
+            return new Node(node, add(), NodeKind.LT);
+        }
+        else if(checkPrefix("<")) {
+            return new Node(add(), node, NodeKind.LT);
+        }
+        else if(checkPrefix("==")) {
+            return new Node(node, add(), NodeKind.EQ);
+        }
+        else if(checkPrefix("!=")) {
+            return new Node(node, add(), NodeKind.NEQ);
+        }
+        return node;
     }
 
     /* add = mul ("+" mul | "-" mul)* */
