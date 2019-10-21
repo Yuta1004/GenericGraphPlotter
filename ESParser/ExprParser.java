@@ -15,7 +15,7 @@ public class ExprParser {
         this.var.put("E", Math.E);
     }
 
-    public void compile() {
+    public void parse() {
         root = expr();
     }
 
