@@ -1,6 +1,6 @@
 package ESParser;
 
-public class Node {
+class Node {
     public Node left, right;
     public double value;
     public String varName;

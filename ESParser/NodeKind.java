@@ -1,6 +1,6 @@
 package ESParser;
 
-public enum NodeKind {
+enum NodeKind {
     UNDEFINED,
     NUM,
     VAR,

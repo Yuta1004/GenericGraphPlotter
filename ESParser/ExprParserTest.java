@@ -1,6 +1,6 @@
 package ESParser;
 
-public class ExprParserTest {
+class ExprParserTest {
 
     public static void main(String[] args) {
         test1();
