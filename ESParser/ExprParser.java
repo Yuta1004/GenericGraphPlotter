@@ -67,11 +67,11 @@ public class ExprParser {
 
         while(true) {
             if(checkPrefix("+")) {
-                node = new Node(node, mul(), 0, NodeKind.ADD);
+                node = new Node(node, mul(), NodeKind.ADD);
                 continue;
             }
             else if(checkPrefix("-")) {
-                node = new Node(node, mul(), 0, NodeKind.SUB);
+                node = new Node(node, mul(), NodeKind.SUB);
                 continue;
             }
             break;
@@ -85,11 +85,11 @@ public class ExprParser {
 
         while(true) {
             if(checkPrefix("*")) {
-                node = new Node(node, num(), 0, NodeKind.MUL);
+                node = new Node(node, num(), NodeKind.MUL);
                 continue;
             }
             else if(checkPrefix("/")) {
-                node = new Node(node, num(), 0, NodeKind.DIV);
+                node = new Node(node, num(), NodeKind.DIV);
                 continue;
             }
             break;
@@ -101,8 +101,7 @@ public class ExprParser {
     private Node unary() {
         checkPrefix("+");
         if(checkPrefix("-")) {
-            Node zeroNumNode = new Node(null, null, 0, NodeKind.NUM);
-            return new Node(zeroNumNode, func(), 0, NodeKind.SUB);
+            return new Node(new Node(0), func(), NodeKind.SUB);
         }
         return func();
     }
@@ -110,10 +109,10 @@ public class ExprParser {
     /* func = ("sin" | "cos")? num */
     private Node func() {
         if(checkPrefix("sin")) {
-            return new Node(num(), null, 0, NodeKind.SIN);
+            return new Node(num(), null, NodeKind.SIN);
         }
         else if(checkPrefix("cos")) {
-            return new Node(num(), null, 0, NodeKind.COS);
+            return new Node(num(), null, NodeKind.COS);
         }
         return num();
     }
@@ -128,10 +127,10 @@ public class ExprParser {
 
         String varName = getVarName();
         if(var.containsKey(varName)) {
-            return new Node(null, null, var.get(varName), NodeKind.NUM);
+            return new Node(var.get(varName));
         }
 
-        return new Node(null, null, getNum(), NodeKind.NUM);
+        return new Node(getNum());
     }
 
     /* getNum : 式の先頭から字を読み取る */
