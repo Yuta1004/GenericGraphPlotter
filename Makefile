@@ -20,4 +20,4 @@ test:
 	$(JAVA) ESParser/ExprParserTest
 
 clean:
-	rm -rf *.class
+	rm -rf *.class ESParser/*.class
