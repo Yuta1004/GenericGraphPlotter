@@ -6,7 +6,8 @@ public enum NodeKind {
     ADD(2),
     SUB(3),
     MUL(4),
-    DIV(5);
+    DIV(5),
+    EXPR(6);
 
     public int val;
 
