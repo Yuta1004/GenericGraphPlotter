@@ -26,6 +26,7 @@ public class ExprParser {
     }
 
     private double calcChild(Node node) {
+        if(node == null) return 0;
         if(node.kind == NodeKind.NUM) return node.value;
 
         double leftVal = calcChild(node.left);
@@ -43,6 +44,12 @@ public class ExprParser {
 
         case DIV:
             return leftVal / rightVal;
+
+        case SIN:
+            return Math.sin(leftVal);
+
+        case COS:
+            return Math.cos(leftVal);
 
         default:
             return 0;
@@ -72,9 +79,9 @@ public class ExprParser {
         return node;
     }
 
-    /* mul = num ("*" num | "-" num)* */
+    /* mul = unary ("*" unary | "-" unary)* */
     private Node mul() {
-        Node node = num();
+        Node node = unary();
 
         while(true) {
             if(checkPrefix("*")) {
@@ -90,15 +97,26 @@ public class ExprParser {
         return node;
     }
 
-    /* unary = ("+" | "-")* num */
+    /* unary = ("+" | "-")* func */
     private Node unary() {
         int minusFlag = 1;
         checkPrefix("+");
         if(checkPrefix("-")) minusFlag = -1;
 
-        Node node = num();
+        Node node = func();
         node.value *= minusFlag;
         return node;
+    }
+
+    /* func = ("sin" | "cos")? num */
+    private Node func() {
+        if(checkPrefix("sin")) {
+            return new Node(num(), null, 0, NodeKind.SIN);
+        }
+        else if(checkPrefix("cos")) {
+            return new Node(num(), null, 0, NodeKind.COS);
+        }
+        return num();
     }
 
     /* num = 数 | "(" expr ")" */
@@ -125,7 +143,8 @@ public class ExprParser {
         for(; idx < expr.length(); ++ idx) {
             if('0' <= expr.charAt(idx) && expr.charAt(idx) <= '9') {
                 num = num * 10 + expr.charAt(idx) - '0';
-            } else {
+            }
+            else {
                 break;
             }
         }
