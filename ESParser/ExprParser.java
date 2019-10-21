@@ -47,6 +47,18 @@ public class ExprParser {
         case DIV:
             return leftVal / rightVal;
 
+        case LT:
+            return leftVal > rightVal ? 1 : 0;
+
+        case LTE:
+            return leftVal >= rightVal ? 1 : 0;
+
+        case EQ:
+            return leftVal == rightVal ? 1 : 0;
+
+        case NEQ:
+            return leftVal != rightVal ? 1 : 0;
+
         case SIN:
             return Math.sin(leftVal);
 
