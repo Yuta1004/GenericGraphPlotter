@@ -61,12 +61,26 @@ public class ScriptParser {
 
             // loop
             if(line.startsWith("loop")) {
-                loopStack.add(idx);
+                // 条件式
+                String expr = line.split(":")[1].replace(" ", "");
+                ExprParser ep = new ExprParser(expr);
+                ep = setVar(ep);
+                ep.parse();
+
+                // 条件が真 -> 継続, 偽 -> endまでジャンプ
+                if(ep.calc() != 1.0) {
+                    for(; idx < splitedScript.length; ++ idx) {
+                        if(splitedScript[idx].replace(" ", "").equals("end")) break;
+                    }
+                } else {
+                    loopStack.add(idx);
+                }
                 continue;
             }
 
             // end
             if(line.replace(" ", "").equals("end") && loopStack.size() > 0) {
+                // スタックに積まれているループ始点へジャンプ
                 idx = loopStack.get(loopStack.size()-1) - 1;
                 loopStack.remove(loopStack.size()-1);
                 continue;
