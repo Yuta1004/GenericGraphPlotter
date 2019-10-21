@@ -55,8 +55,7 @@ public class ExprCompiler {
                 node = new Node(node, mul(), 0, NodeKind.ADD);
                 continue;
             }
-       
-            if(checkChar('-')) {
+            else if(checkChar('-')) {
                 node = new Node(node, mul(), 0, NodeKind.SUB);
                 continue;
             }
@@ -74,8 +73,7 @@ public class ExprCompiler {
                 node = new Node(node, num(), 0, NodeKind.MUL);
                 continue;
             }
-       
-            if(checkChar('/')) {
+            else if(checkChar('/')) {
                 node = new Node(node, num(), 0, NodeKind.DIV);
                 continue;
             }
