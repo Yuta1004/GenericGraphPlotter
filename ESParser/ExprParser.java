@@ -59,11 +59,11 @@ public class ExprParser {
         Node node = mul();
 
         while(true) {
-            if(checkChar('+')) {
+            if(checkPrefix("+")) {
                 node = new Node(node, mul(), 0, NodeKind.ADD);
                 continue;
             }
-            else if(checkChar('-')) {
+            else if(checkPrefix("-")) {
                 node = new Node(node, mul(), 0, NodeKind.SUB);
                 continue;
             }
@@ -77,11 +77,11 @@ public class ExprParser {
         Node node = num();
 
         while(true) {
-            if(checkChar('*')) {
+            if(checkPrefix("*")) {
                 node = new Node(node, num(), 0, NodeKind.MUL);
                 continue;
             }
-            else if(checkChar('/')) {
+            else if(checkPrefix("/")) {
                 node = new Node(node, num(), 0, NodeKind.DIV);
                 continue;
             }
@@ -93,8 +93,8 @@ public class ExprParser {
     /* unary = ("+" | "-")* num */
     private Node unary() {
         int minusFlag = 1;
-        checkChar('+');
-        if(checkChar('-')) minusFlag = -1;
+        checkPrefix("+");
+        if(checkPrefix("-")) minusFlag = -1;
 
         Node node = num();
         node.value *= minusFlag;
@@ -103,9 +103,9 @@ public class ExprParser {
 
     /* num = 数 | "(" expr ")" */
     private Node num() {
-        if(checkChar('(')) {
+        if(checkPrefix("(")) {
             Node node = expr();
-            checkChar(')');
+            checkPrefix(")");
             return node;
         }
 
@@ -155,11 +155,11 @@ public class ExprParser {
         }
     }
 
-    /* checkChar : 式の先頭の文字をチェックする */
-    private boolean checkChar(char validChar) {
+    /* checkPrefix : 式の先頭の文字列をチェックする */
+    private boolean checkPrefix(String prefix) {
         skipSpace();
-        if(expr.length() > 0 && expr.charAt(0) == validChar) {
-            expr = expr.substring(1, expr.length());
+        if(expr.startsWith(prefix)) {
+            expr = expr.substring(prefix.length(), expr.length());
             return true;
         }
         return false;
