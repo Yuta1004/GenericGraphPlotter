@@ -41,6 +41,19 @@ public class ScriptParser {
                 expr.add(ep);
                 continue;
             }
+
+            // 値代入
+            if(line.contains("=")) {
+                String left = line.split("=")[0].replace(" ", "");
+                String right = line.split("=")[1].replace(" ", "");
+                if(checkVarName(left) && var.containsKey(left)) {
+                    ExprParser ep = new ExprParser(right);
+                    ep.parse();
+                    ep = setVar(ep);
+                    var.put(left, ep.calc());
+                }
+                continue;
+            }
         }
     }
 
