@@ -108,6 +108,12 @@ public class ExprParser {
             checkChar(')');
             return node;
         }
+
+        String varName = getVarName();
+        if(var.containsKey(varName)) {
+            return new Node(null, null, var.get(varName), NodeKind.NUM);
+        }
+
         return new Node(null, null, getNum(), NodeKind.NUM);
     }
 
