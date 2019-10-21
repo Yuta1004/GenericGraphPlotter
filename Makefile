@@ -6,7 +6,7 @@ run:
 	make compile
 	make run-applet
 
-compile: Main.java ExprScriptCompiler*
+compile: Main.java
 	$(JAVAC) Main.java
 
 run-applet: Main.java
