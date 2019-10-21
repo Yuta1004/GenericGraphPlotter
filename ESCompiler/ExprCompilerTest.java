@@ -1,13 +1,13 @@
 package ESCompiler;
 
-public class ScriptCompilerTest {
+public class ExprCompilerTest {
 
     public static void main(String[] args) {
         test1();
     }
 
     private static void test1() {
-        ScriptCompiler ec = new ScriptCompiler("1004 + 1204");
+        ExprCompiler ec = new ExprCompiler("1004 + 1204");
         ec.compile();
     }
 
