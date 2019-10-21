@@ -1,12 +1,16 @@
 package ESParser;
 
+import java.util.HashMap;
+
 public class ExprParser {
 
     private Node root;
     private String expr;
+    private HashMap<String, Double> var;
 
     public ExprParser(String expr) {
         this.expr = expr;
+        this.var = new HashMap<String, Double>();
     }
 
     public void compile() {
@@ -15,6 +19,10 @@ public class ExprParser {
 
     public double calc() {
         return calcChild(root);
+    }
+
+    public void setVar(String name, double value) {
+        var.put(name, value);
     }
 
     private double calcChild(Node node) {
@@ -117,6 +125,21 @@ public class ExprParser {
         }
         expr = expr.substring(idx, expr.length());
         return num;
+    }
+
+    /* getVarName ; 式の先頭から変数名を取り出す */
+    private String getVarName() {
+        skipSpace();
+        int idx = 0;
+        for(; idx < expr.length(); ++ idx) {
+            char ch = expr.charAt(idx);
+            if(('a' <= ch && ch <= 'z') || ('A' <= ch && ch <= 'z') || ch == '_'){}
+            else break;
+        }
+
+        String varName = expr.substring(0, idx);
+        expr = expr.substring(idx, expr.length());
+        return varName;
     }
 
     /* skipSpace : 式先頭にある空白を読み飛ばす*/
