@@ -3,9 +3,9 @@ package ESCompiler;
 public class Node {
     public Node left, right;
     public double value;
-    public int kind;
+    public NodeKind kind;
 
-    public Node(Node left, Node right, double value, int kind){
+    public Node(Node left, Node right, double value, NodeKind kind){
         this.left = left;
         this.right = right;
         this.value = value;
