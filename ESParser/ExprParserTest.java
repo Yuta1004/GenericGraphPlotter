@@ -10,6 +10,8 @@ public class ExprParserTest {
         test5();
         test6();
         test7();
+        test8();
+        test9();
     }
 
     private static void test1() {
@@ -63,6 +65,18 @@ public class ExprParserTest {
             ec.setVar("y", radY);
             valid(ec.calc(), Math.sin(radX) + Math.cos(radY) + 2);
         }
+    }
+
+    private static void test8() {
+        ExprParser ec = new ExprParser("logE");
+        ec.compile();
+        valid(ec.calc(), Math.log(Math.E));
+    }
+
+    private static void test9() {
+        ExprParser ec = new ExprParser("sin(PI) + abs(cos(PI))");
+        ec.compile();
+        valid(ec.calc(), Math.sin(Math.PI) + Math.abs(Math.cos(Math.PI)));
     }
 
     private static void valid(double a, double b) {
