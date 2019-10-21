@@ -82,6 +82,17 @@ public class ExprParser {
         return node;
     }
 
+    /* unary = ("+" | "-")* num */
+    private Node unary() {
+        int minusFlag = 1;
+        checkChar('+');
+        if(checkChar('-')) minusFlag = -1;
+
+        Node node = num();
+        node.value *= minusFlag;
+        return node;
+    }
+
     /* num = 数 */
     private Node num() {
         return new Node(null, null, getNum(), NodeKind.NUM);
