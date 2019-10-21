@@ -11,6 +11,8 @@ public class ExprParser {
     public ExprParser(String expr) {
         this.expr = expr;
         this.var = new HashMap<String, Double>();
+        this.var.put("PI", 3.141592653589793);
+        this.var.put("E", 2.718281828459045);
     }
 
     public void compile() {
