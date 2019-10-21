@@ -99,13 +99,12 @@ public class ExprParser {
 
     /* unary = ("+" | "-")* func */
     private Node unary() {
-        int minusFlag = 1;
         checkPrefix("+");
-        if(checkPrefix("-")) minusFlag = -1;
-
-        Node node = func();
-        node.value *= minusFlag;
-        return node;
+        if(checkPrefix("-")) {
+            Node zeroNumNode = new Node(null, null, 0, NodeKind.NUM);
+            return new Node(zeroNumNode, func(), 0, NodeKind.SUB);
+        }
+        return func();
     }
 
     /* func = ("sin" | "cos")? num */
