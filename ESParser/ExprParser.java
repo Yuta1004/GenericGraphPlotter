@@ -93,8 +93,13 @@ public class ExprParser {
         return node;
     }
 
-    /* num = 数 */
+    /* num = 数 | "(" expr ")" */
     private Node num() {
+        if(checkChar('(')) {
+            Node node = expr();
+            checkChar(')');
+            return node;
+        }
         return new Node(null, null, getNum(), NodeKind.NUM);
     }
 
