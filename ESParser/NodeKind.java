@@ -9,5 +9,7 @@ public enum NodeKind {
     MUL,
     DIV,
     SIN,
-    COS;
+    COS,
+    ABS,
+    LOG;
 }
