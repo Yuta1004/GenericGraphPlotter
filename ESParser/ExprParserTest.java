@@ -8,6 +8,7 @@ public class ExprParserTest {
         test3();
         test4();
         test5();
+        test6();
     }
 
     private static void test1() {
@@ -38,6 +39,16 @@ public class ExprParserTest {
         ExprParser ec = new ExprParser("(1 + 2 + 3 + 4) / 10 - 7");
         ec.compile();
         valid(ec.calc(), (1 + 2 + 3 + 4) / 10 - 7);
+    }
+
+    private static void test6() {
+        int x = 10, y = 2, z = 6;
+        ExprParser ec = new ExprParser("2 * x / y + z");
+        ec.setVar("x", x);
+        ec.setVar("y", y);
+        ec.setVar("z", z);
+        ec.compile();
+        valid(ec.calc(), 2 * x / y + z);
     }
 
     private static void valid(double a, double b) {
