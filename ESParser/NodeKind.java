@@ -7,5 +7,6 @@ public enum NodeKind {
     SUB,
     MUL,
     DIV,
-    EXPR;
+    SIN,
+    COS;
 }
