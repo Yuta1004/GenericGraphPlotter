@@ -51,6 +51,12 @@ public class ExprParser {
         case COS:
             return Math.cos(leftVal);
 
+        case ABS:
+            return Math.abs(leftVal);
+
+        case LOG:
+            return Math.log(leftVal);
+
         case VAR:
             if(var.containsKey(node.varName)) {
                 return var.get(node.varName);
@@ -122,6 +128,12 @@ public class ExprParser {
         }
         else if(checkPrefix("cos")) {
             return new Node(num(), null, NodeKind.COS);
+        }
+        else if(checkPrefix("abs")) {
+            return new Node(num(), null, NodeKind.ABS);
+        }
+        else if(checkPrefix("log")) {
+            return new Node(num(), null, NodeKind.LOG);
         }
         return num();
     }
