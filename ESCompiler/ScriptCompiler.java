@@ -1,17 +1,25 @@
 package ESCompiler;
 
-public class ExprScriptCompiler {
+public class ScriptCompiler {
 
     private String script;
     private Node root;
 
-    public ExprScriptCompiler(String script) {
+    public ScriptCompiler(String script) {
         this.script = script;
     }
 
-    public void compile() {}
+    public void compile() {
+        this.root = compileExpr();  
+    }
 
-    private void compilerExpr() {}
+    private Node compileExpr() {
+        Node tmp = new Node(null, null, strton(script), NodeKind.Undefined.val); 
+        script = script.substring(strtonSize(this.script), script.length());
+        System.out.println(tmp.value);
+        System.out.println(script);
+        return tmp;
+    }
 
     /* strton : 文字列から数字を読み取る */
     private double strton(String target) {

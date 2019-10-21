@@ -16,8 +16,8 @@ run-normal:
 	$(JAVA) Main
 
 test:
-	$(JAVAC) ESCompiler/ExprScriptCompilerTest.java
-	$(JAVA) ESCompiler/ExprScriptCompilerTest
+	$(JAVAC) ESCompiler/ScriptCompilerTest.java
+	$(JAVA) ESCompiler/ScriptCompilerTest
 
 clean:
 	rm -rf *.class
