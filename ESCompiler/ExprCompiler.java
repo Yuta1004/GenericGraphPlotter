@@ -10,10 +10,10 @@ public class ExprCompiler {
     }
 
     public void compile() {
-        Node tmp = new Node(null, null, strton(expr), NodeKind.UNDEFINED.val); 
-        expr = expr.substring(strtonSize(this.expr), expr.length());
+        Node tmp = new Node(null, null, getNum(), NodeKind.UNDEFINED.val); 
+        skipSpace();
         System.out.println(tmp.value);
-        System.out.println(skipSpace(expr));
+        System.out.println(expr);
     }
 
 
@@ -37,35 +37,25 @@ public class ExprCompiler {
         return null;
     }
 
-    /* strton : 文字列から数字を読み取る */
-    private double strton(String target) {
+    /* getNum : 式の先頭から字を読み取る */
+    private double getNum() {
         double num = 0;
-        for(int idx = 0; idx < target.length(); ++ idx) {
-            if('0' <= target.charAt(idx) && target.charAt(idx) <= '9') {
-                num = num * 10 + target.charAt(idx) - '0';
+        int idx = 0;
+        for(; idx < expr.length(); ++ idx) {
+            if('0' <= expr.charAt(idx) && expr.charAt(idx) <= '9') {
+                num = num * 10 + expr.charAt(idx) - '0';
             } else {
                 break;
             }
         }
+        expr = expr.substring(idx, expr.length());
         return num;
     }
 
-    /* strtonSize : 文字列から数字が続く長さを求める */
-    private int strtonSize(String target) {
-        int idx = 0;
-        for( ; idx < target.length(); ++ idx) {
-            if(!('0' <= target.charAt(idx) && target.charAt(idx) <= '9')) {
-                return idx;
-            }
+    /* skipSpace : 式先頭にある空白を読み飛ばす*/
+    private void skipSpace() {
+        while(expr.length() >= 0 && expr.charAt(0) == ' ') {
+            expr = expr.substring(1, expr.length());
         }
-        return idx;
-    }
-
-    /* skipSpace : 先頭にある空白を読み飛ばす*/
-    private String skipSpace(String target) {
-        while(target.length() >= 0 && target.charAt(0) == ' ') {
-            target = target.substring(1, target.length());
-        }
-        return target;
     }
 }
