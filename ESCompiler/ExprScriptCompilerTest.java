@@ -7,7 +7,8 @@ public class ExprScriptCompilerTest {
     }
 
     private static void test1() {
-        ExprScriptCompiler ec = new ExprScriptCompiler("script");
+        ExprScriptCompiler ec = new ExprScriptCompiler("1004 + 1204");
+        ec.compile();
     }
 
 }
