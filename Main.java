@@ -7,7 +7,7 @@ public class Main extends Applet {
 
     // Applet用
     private int width, height;
-    private Color white, black;
+    private Color white, black, gray;
     private Font font, boldFont;
 
     // グラフ描画用
@@ -21,6 +21,7 @@ public class Main extends Applet {
         height = 800;
         white = new Color(255, 255, 255);
         black = new Color(0, 0, 0);
+        gray = new Color(100, 100, 100);
         font = new Font("TimesRoman", Font.PLAIN, 30);
         boldFont = new Font("TimesRomas", Font.BOLD, 30);
 
@@ -88,11 +89,13 @@ public class Main extends Applet {
             y = originY - (int)(idx*dy*scaleY);
             size = (idx % 5) == 0 ? 15 : 10;
             size = (idx % 10) == 0 ? 20 : size;
+            g.setColor(black);
             g.setStroke(new BasicStroke(2));
             g.drawLine(originX-size, y, originX+size, y);
             g.drawString(String.valueOf((int)(idx*dy)), originX-50, y+12);
 
             // 長線
+            g.setColor(gray);
             g.setStroke(new BasicStroke(1));
             g.drawLine(originX, y, originX+900, y);
         }
