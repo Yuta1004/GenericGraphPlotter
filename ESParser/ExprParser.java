@@ -1,19 +1,22 @@
 package ESParser;
 
 import java.util.HashMap;
+import java.util.regex.Patten;
 
 public class ExprParser {
 
     private Node root;
     private String expr;
     private HashMap<String, Double> var;
+    private Patten constCheck;
 
     public ExprParser(String expr) {
         this.expr = expr;
-        this.var = new HashMap<String, Double>();
-        this.var.put("PI", Math.PI);
-        this.var.put("E", Math.E);
-        this.var.put("x", 0.0);
+        constCheck = Pattern.compile("PI|E");
+        var = new HashMap<String, Double>();
+        var.put("PI", Math.PI);
+        var.put("E", Math.E);
+        var.put("x", 0.0);
     }
 
     public void parse() {
@@ -30,6 +33,7 @@ public class ExprParser {
     }
 
     public void setVar(String name, double value) {
+        if(constCheck.matcher(name).matches()) return;
         var.put(name, value);
     }
 
