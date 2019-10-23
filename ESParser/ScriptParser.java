@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class ScriptParser {
 
     private String script;
-    private Node root;
     private HashMap<String, Double> var;
     private ArrayList<ExprParser> expr;
 
@@ -14,6 +13,17 @@ public class ScriptParser {
         this.script = script;
         this.var = new HashMap<String, Double>();
         this.expr = new ArrayList<ExprParser>();
+    }
+
+    public int getGraphNum() {
+        return expr.size();
+    }
+
+    public ExprParser getGraph(int idx) {
+        if(idx < expr.size()) {
+            return expr.get(idx);
+        }
+        return null;
     }
 
     public void parse() {
