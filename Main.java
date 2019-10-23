@@ -8,6 +8,7 @@ public class Main extends Applet {
     // Applet用
     private int width, height;
     private Color white, black;
+    private Font font, boldFont;
 
     // グラフ描画用
     private int originX, originY;
@@ -20,6 +21,8 @@ public class Main extends Applet {
         height = 800;
         white = new Color(255, 255, 255);
         black = new Color(0, 0, 0);
+        font = new Font("TimesRoman", Font.PLAIN, 30);
+        boldFont = new Font("TimesRomas", Font.BOLD, 30);
 
         // グラフ
         originX = 100;
@@ -39,6 +42,7 @@ public class Main extends Applet {
     /* グラフの軸など、基礎となる部分を描画  */
     private void drawGraphBase(Graphics2D g) {
         // 線の太さ, 色
+        g.setFont(boldFont);
         g.setColor(black);
         g.setStroke(new BasicStroke(3));
 
@@ -46,11 +50,13 @@ public class Main extends Applet {
         g.drawLine(originX-50, originY, originX+700, originY);
         g.drawLine(originX+680, originY-10, originX+700, originY);
         g.drawLine(originX+680, originY+10, originX+700, originY);
+        g.drawString("x", originX+350, originY+70);
 
         // 軸(y) 500
         g.drawLine(originX, originY+50, originX, originY-500);
         g.drawLine(originX-10, originY-480, originX, originY-500);
         g.drawLine(originX+10, originY-480, originX, originY-500);
+        g.drawString("y", originX-70, originY-250);
     }
 
     /* グラフ上の座標を描画用の座標に変換する(x) */
