@@ -33,12 +33,24 @@ public class Main extends Applet {
         // background
         g.setColor(white);
         g.drawRect(0, 0, width, height);
-        drawGraphBase(g);
+        drawGraphBase((Graphics2D)g);
     }
 
     /* グラフの軸など、基礎となる部分を描画  */
-    private void drawGraphBase(Graphics g) {
+    private void drawGraphBase(Graphics2D g) {
+        // 線の太さ, 色
         g.setColor(black);
+        g.setStroke(new BasicStroke(3));
+
+        // 軸(x) 700
+        g.drawLine(originX-50, originY, originX+700, originY);
+        g.drawLine(originX+680, originY-10, originX+700, originY);
+        g.drawLine(originX+680, originY+10, originX+700, originY);
+
+        // 軸(y) 500
+        g.drawLine(originX, originY+50, originX, originY-500);
+        g.drawLine(originX-10, originY-480, originX, originY-500);
+        g.drawLine(originX+10, originY-480, originX, originY-500);
     }
 
     /* グラフ上の座標を描画用の座標に変換する(x) */
