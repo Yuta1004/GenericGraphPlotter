@@ -1,7 +1,15 @@
-class Main {
+import java.awt.*;
+import java.applet.*;
 
-    public static void main(String[] args) {
-        System.out.println("Hello World");
+/* <applet code="Main.class" width="1200" height="800"></applet> */
+
+public class Main extends Applet {
+
+    public void init() {
+
+    }
+
+    public void paint(Graphics g) {
     }
 
 }
