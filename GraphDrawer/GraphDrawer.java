@@ -2,6 +2,7 @@ package GraphDrawer;
 
 import java.awt.*;
 import java.applet.*;
+import java.util.ArrayList;
 
 public class GraphDrawer {
 
@@ -12,6 +13,7 @@ public class GraphDrawer {
     // グラフ用
     private int originX, originY;
     private double scaleX, scaleY, dx, dy;
+    private ArrayList<GraphPlotter> graph;
 
     /* コンストラクタ */
     public GraphDrawer(int oX, int oY, double sX, double sY, double dx, double dy) {
@@ -23,6 +25,7 @@ public class GraphDrawer {
         boldFont = new Font("TimesRomas", Font.BOLD, 30);
 
         // グラフ
+        graph = new ArrayList<GraphPlotter>();
         originX = oX;
         originY = oY;
         scaleX = sX;
@@ -34,6 +37,16 @@ public class GraphDrawer {
     /* draw : 描画 */
     public void draw(Graphics2D g) {
         drawBase(g);
+        for(GraphPlotter gp: graph) {
+            gp.plot(g);
+        }
+    }
+
+    /* addGraph : 描画グラフ追加 */
+    public void addGraph(double xArray[], double yArray[]) {
+        GraphPlotter gp = new GraphPlotter(originX, originY, scaleX, scaleY);
+        gp.setGraph(xArray, yArray);
+        graph.add(gp);
     }
 
     /* drawBase : 描画(ベース) */
