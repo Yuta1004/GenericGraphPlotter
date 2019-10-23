@@ -84,11 +84,17 @@ public class Main extends Applet {
 
         // 補助線(y)
         for(int idx = 1; idx*dy*scaleY <= 570; ++ idx) {
+            // 短線
             y = originY - (int)(idx*dy*scaleY);
             size = (idx % 5) == 0 ? 15 : 10;
             size = (idx % 10) == 0 ? 20 : size;
+            g.setStroke(new BasicStroke(2));
             g.drawLine(originX-size, y, originX+size, y);
             g.drawString(String.valueOf((int)(idx*dy)), originX-50, y+12);
+
+            // 長線
+            g.setStroke(new BasicStroke(1));
+            g.drawLine(originX, y, originX+900, y);
         }
     }
 
