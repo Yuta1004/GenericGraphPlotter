@@ -7,6 +7,7 @@ class GraphPlotter {
 
     private int originX, originY, stroke;
     private double scaleX, scaleY;
+    private double xArray[], yArray[];
     private Color color;
 
     public GraphPlotter(int oX, int oY, double sX, double sY) {
@@ -29,7 +30,12 @@ class GraphPlotter {
         stroke = s;
     }
 
-    public void plot(Graphics2D g, double xArray[], double yArray[]) {
+    public void setGraph(double xArray[], double yArray[]) {
+        this.xArray = xArray;
+        this.yArray = yArray;
+    }
+
+    public void plot(Graphics2D g) {
         int x0, y0, x1, y1;
         int size = Math.min(xArray.length, yArray.length);
         g.setStroke(new BasicStroke(stroke));
