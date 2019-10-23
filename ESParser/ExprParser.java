@@ -13,6 +13,7 @@ public class ExprParser {
         this.var = new HashMap<String, Double>();
         this.var.put("PI", Math.PI);
         this.var.put("E", Math.E);
+        this.var.put("x", 0.0);
     }
 
     public void parse() {
