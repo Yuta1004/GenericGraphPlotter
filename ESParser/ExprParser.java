@@ -1,14 +1,14 @@
 package ESParser;
 
 import java.util.HashMap;
-import java.util.regex.Patten;
+import java.util.regex.Pattern;
 
 public class ExprParser {
 
     private Node root;
     private String expr;
     private HashMap<String, Double> var;
-    private Patten constCheck;
+    private Pattern constCheck;
 
     public ExprParser(String expr) {
         this.expr = expr;
