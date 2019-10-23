@@ -46,17 +46,20 @@ public class Main extends Applet {
         g.setColor(black);
         g.setStroke(new BasicStroke(3));
 
+        // 原点
+        g.drawString("o", originX-50, originY+50);
+
         // 軸(x) 700
         g.drawLine(originX-50, originY, originX+900, originY);
         g.drawLine(originX+880, originY-10, originX+900, originY);
         g.drawLine(originX+880, originY+10, originX+900, originY);
-        g.drawString("x", originX+450, originY+70);
+        g.drawString("x", originX+900, originY+70);
 
         // 軸(y) 500
         g.drawLine(originX, originY+50, originX, originY-600);
         g.drawLine(originX-10, originY-580, originX, originY-600);
         g.drawLine(originX+10, originY-580, originX, originY-600);
-        g.drawString("y", originX-70, originY-300);
+        g.drawString("y", originX-70, originY-600);
     }
 
     /* グラフ上の座標を描画用の座標に変換する(x) */
