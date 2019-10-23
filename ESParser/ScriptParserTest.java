@@ -8,6 +8,7 @@ class ScriptParserTest {
         test3();
         test4();
         test5();
+        test6();
     }
 
     private static void test1() {
@@ -65,5 +66,27 @@ class ScriptParserTest {
         };
         ScriptParser parser = new ScriptParser(String.join("\n", script));
         parser.parse();
+    }
+
+    private static void test6() {
+        String script[] = {
+            "plot sinx",
+        };
+        ScriptParser parser = new ScriptParser(String.join("\n", script));
+        parser.parse();
+
+        double x[] = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
+        double y[] = parser.getGraph(0, x);
+        for(int idx = 0; idx < x.length; ++ idx) {
+            valid(y[idx], Math.sin(x[idx]));
+        }
+    }
+
+    private static void valid(double a, double b) {
+        if(a == b) {
+            System.out.println("OK : " + a + " == " + b);
+            return;
+        }
+        System.out.println("NG : " + a + " != " + b);
     }
 }
