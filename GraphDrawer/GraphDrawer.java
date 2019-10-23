@@ -31,12 +31,12 @@ public class GraphDrawer {
         this.dy = dy;
     }
 
-    /* 描画 */
+    /* draw : 描画 */
     public void draw(Graphics2D g) {
         drawBase(g);
     }
 
-    /* 描画(ベース) */
+    /* drawBase : 描画(ベース) */
     private void drawBase(Graphics2D g) {
         // 線の太さ, 色
         g.setFont(boldFont);
