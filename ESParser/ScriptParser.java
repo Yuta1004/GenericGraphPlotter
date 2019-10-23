@@ -9,17 +9,20 @@ public class ScriptParser {
     private HashMap<String, Double> var;
     private ArrayList<ExprParser> expr;
 
+    /* コンストラクタ */
     public ScriptParser(String script) {
         this.script = script;
         this.var = new HashMap<String, Double>();
         this.expr = new ArrayList<ExprParser>();
     }
 
+    /* getGraphNum : 登録されているグラフの数を取得する */
     public int getGraphNum() {
         return expr.size();
     }
 
-    public double[] getGraph(int gID, double xArray[]) {
+    /* calcGraph : 計算を行う */
+    public double[] calcGraph(int gID, double xArray[]) {
         // 値チェック
         if(gID >= this.expr.size()) return new double[0];
 
@@ -31,6 +34,7 @@ public class ScriptParser {
         return yArray;
     }
 
+    /* parse : スクリプトパース */
     public void parse() {
         ArrayList<Integer> loopStack = new ArrayList<Integer>();
         String splitedScript[] = script.split("\n");

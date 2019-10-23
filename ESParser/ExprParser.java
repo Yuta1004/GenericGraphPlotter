@@ -10,6 +10,7 @@ public class ExprParser {
     private HashMap<String, Double> var;
     private Pattern constCheck;
 
+    /* コンストラクタ */
     public ExprParser(String expr) {
         this.expr = expr;
         constCheck = Pattern.compile("PI|E");
@@ -19,24 +20,29 @@ public class ExprParser {
         var.put("x", 0.0);
     }
 
+    /* parse :式のパースを行う */
     public void parse() {
         root = expr();
     }
 
+    /* calc : 式の計算を行う */
     public double calc() {
         return calcChild(root);
     }
 
+    /* calc(double x) : 式の計算を行う(変数xを指定) */
     public double calc(double x) {
         setVar("x", x);
         return calc();
     }
 
+    /* setVar : 変数の値を設定する */
     public void setVar(String name, double value) {
         if(constCheck.matcher(name).matches()) return;
         var.put(name, value);
     }
 
+    /* calcChild : 構文木を辿りつつ計算を行う */
     private double calcChild(Node node) {
         if(node == null) return 0;
         if(node.kind == NodeKind.NUM) return node.value;

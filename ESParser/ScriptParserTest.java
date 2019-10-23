@@ -76,7 +76,7 @@ class ScriptParserTest {
         parser.parse();
 
         double x[] = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
-        double y[] = parser.getGraph(0, x);
+        double y[] = parser.calcGraph(0, x);
         for(int idx = 0; idx < x.length; ++ idx) {
             valid(y[idx], Math.sin(x[idx]));
         }
