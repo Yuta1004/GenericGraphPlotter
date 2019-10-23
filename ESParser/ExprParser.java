@@ -24,6 +24,11 @@ public class ExprParser {
         return calcChild(root);
     }
 
+    public double calc(double x) {
+        setVar("x", x);
+        return calc();
+    }
+
     public void setVar(String name, double value) {
         var.put(name, value);
     }
