@@ -1,0 +1,97 @@
+package GraphDrawer;
+
+import java.awt.*;
+import java.applet.*;
+
+public class GraphDrawer {
+
+    // Applet用
+    private Color white, black, gray;
+    private Font font, boldFont;
+
+    // グラフ用
+    private int originX, originY;
+    private double scaleX, scaleY, dx, dy;
+
+    /* コンストラクタ */
+    public GraphDrawer(int oX, int oY, double sX, double sY, double dx, double dy) {
+        // Applet
+        white = new Color(255, 255, 255);
+        black = new Color(0, 0, 0);
+        gray = new Color(100, 100, 100);
+        font = new Font("TimesRoman", Font.PLAIN, 30);
+        boldFont = new Font("TimesRomas", Font.BOLD, 30);
+
+        // グラフ
+        originX = oX;
+        originY = oY;
+        scaleX = sX;
+        scaleY = sY;
+        this.dx = dx;
+        this.dy = dy;
+    }
+
+    /* 描画 */
+    public void draw(Graphics2D g) {
+        drawBase(g);
+    }
+
+    /* 描画(ベース) */
+    private void drawBase(Graphics2D g) {
+        // 線の太さ, 色
+        g.setFont(boldFont);
+        g.setColor(black);
+        g.setStroke(new BasicStroke(3));
+
+        // 原点
+        g.drawString("o", originX-50, originY+50);
+
+        // 軸(x) 700
+        g.drawLine(originX-50, originY, originX+900, originY);
+        g.drawLine(originX+880, originY-10, originX+900, originY);
+        g.drawLine(originX+880, originY+10, originX+900, originY);
+        g.drawString("x", originX+900, originY+70);
+
+        // 軸(y) 500
+        g.drawLine(originX, originY+50, originX, originY-600);
+        g.drawLine(originX-10, originY-580, originX, originY-600);
+        g.drawLine(originX+10, originY-580, originX, originY-600);
+        g.drawString("y", originX-70, originY-600);
+
+        // 補助線
+        int x, y, size;
+        g.setStroke(new BasicStroke(2));
+        g.setFont(font);
+
+        // 補助線(x)
+        for(int idx = 1; idx*dx*scaleX <= 870; ++ idx) {
+            // 線
+            x = (int)(idx*dx*scaleX) + originX;
+            size = (idx % 5) == 0 ? 15 : 10;
+            size = (idx % 10) == 0 ? 20 : size;
+            g.drawLine(x, originY-size, x, originY+size);
+
+            // 数
+            if(size == 20) {
+                g.drawString(String.valueOf((int)(idx*dx)), x-10, originY+50);
+            }
+        }
+
+        // 補助線(y)
+        for(int idx = 1; idx*dy*scaleY <= 570; ++ idx) {
+            // 短線
+            y = originY - (int)(idx*dy*scaleY);
+            size = (idx % 5) == 0 ? 15 : 10;
+            size = (idx % 10) == 0 ? 20 : size;
+            g.setColor(black);
+            g.setStroke(new BasicStroke(2));
+            g.drawLine(originX-size, y, originX+size, y);
+            g.drawString(String.valueOf((int)(idx*dy)), originX-50, y+12);
+
+            // 長線
+            g.setColor(gray);
+            g.setStroke(new BasicStroke(1));
+            g.drawLine(originX, y, originX+900, y);
+        }
+    }
+}
