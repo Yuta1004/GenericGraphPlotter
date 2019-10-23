@@ -75,10 +75,7 @@ public class ExprParser {
             if(var.containsKey(node.varName)) {
                 return var.get(node.varName);
             }
-            else {
-                System.err.println("未定義の変数が使用されました : " + node.varName);
-                return 0;
-            }
+            return 0;
 
         default:
             return 0;
