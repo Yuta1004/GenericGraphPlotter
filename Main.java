@@ -63,17 +63,32 @@ public class Main extends Applet {
         g.drawLine(originX+10, originY-580, originX, originY-600);
         g.drawString("y", originX-70, originY-600);
 
-        // 補助線(x)
+        // 補助線
+        int x, y, size;
         g.setStroke(new BasicStroke(2));
-        for(int idx = 0; idx*dx*scaleX <= 870; ++ idx) {
-            int x = (int)(idx*dx*scaleX) + originX;
-            g.drawLine(x, originY-10, x, originY+10);
+        g.setFont(font);
+
+        // 補助線(x)
+        for(int idx = 1; idx*dx*scaleX <= 870; ++ idx) {
+            // 線
+            x = (int)(idx*dx*scaleX) + originX;
+            size = (idx % 5) == 0 ? 15 : 10;
+            size = (idx % 10) == 0 ? 20 : size;
+            g.drawLine(x, originY-size, x, originY+size);
+
+            // 数
+            if(size == 20) {
+                g.drawString(String.valueOf((int)(idx*dx)), x-10, originY+50);
+            }
         }
 
         // 補助線(y)
-        for(int idx = 0; idx*dy*scaleY <= 570; ++ idx) {
-            int y = originY - (int)(idx*dy*scaleY);
-            g.drawLine(originX-10, y, originX+10, y);
+        for(int idx = 1; idx*dy*scaleY <= 570; ++ idx) {
+            y = originY - (int)(idx*dy*scaleY);
+            size = (idx % 5) == 0 ? 15 : 10;
+            size = (idx % 10) == 0 ? 20 : size;
+            g.drawLine(originX-size, y, originX+size, y);
+            g.drawString(String.valueOf((int)(idx*dy)), originX-50, y+12);
         }
     }
 
