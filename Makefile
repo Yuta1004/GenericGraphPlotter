@@ -26,4 +26,4 @@ test:
 
 
 clean:
-	rm -rf *.class ESParser/*.class
+	rm -rf *.class ESParser/*.class GraphDrawer/*.class
