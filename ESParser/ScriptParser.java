@@ -19,11 +19,16 @@ public class ScriptParser {
         return expr.size();
     }
 
-    public ExprParser getGraph(int idx) {
-        if(idx < expr.size()) {
-            return expr.get(idx);
+    public double[] getGraph(int gID, double xArray[]) {
+        // 値チェック
+        if(gID >= this.expr.size()) return new double[0];
+
+        // 計算
+        double yArray[] = new double[xArray.length];
+        for(int idx = 0; idx < xArray.length; ++ idx) {
+            yArray[idx] = this.expr.get(gID).calc(xArray[idx]);
         }
-        return null;
+        return yArray;
     }
 
     public void parse() {
