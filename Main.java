@@ -12,7 +12,7 @@ public class Main extends Applet {
 
     // グラフ描画用
     private int originX, originY;
-    private double scaleX, scaleY;
+    private double scaleX, scaleY, dx, dy;
 
     /* Applet初期化 */
     public void init() {
@@ -27,8 +27,10 @@ public class Main extends Applet {
         // グラフ
         originX = 100;
         originY = 670;
-        scaleX = 60.0;
-        scaleY = 40.0;
+        scaleX = 80.0;
+        scaleY = 80.0;
+        dx = 0.1;
+        dy = 1.0;
     }
 
     /* Applet描画 */
@@ -60,6 +62,19 @@ public class Main extends Applet {
         g.drawLine(originX-10, originY-580, originX, originY-600);
         g.drawLine(originX+10, originY-580, originX, originY-600);
         g.drawString("y", originX-70, originY-600);
+
+        // 補助線(x)
+        g.setStroke(new BasicStroke(2));
+        for(int idx = 0; idx*dx*scaleX <= 870; ++ idx) {
+            int x = (int)(idx*dx*scaleX) + originX;
+            g.drawLine(x, originY-10, x, originY+10);
+        }
+
+        // 補助線(y)
+        for(int idx = 0; idx*dy*scaleY <= 570; ++ idx) {
+            int y = originY - (int)(idx*dy*scaleY);
+            g.drawLine(originX-10, y, originX+10, y);
+        }
     }
 
     /* グラフ上の座標を描画用の座標に変換する(x) */
