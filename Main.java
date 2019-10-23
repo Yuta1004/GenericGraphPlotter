@@ -26,7 +26,7 @@ public class Main extends Applet {
 
         // グラフ
         originX = 100;
-        originY = 600;
+        originY = 670;
         scaleX = 60.0;
         scaleY = 40.0;
     }
@@ -47,16 +47,16 @@ public class Main extends Applet {
         g.setStroke(new BasicStroke(3));
 
         // 軸(x) 700
-        g.drawLine(originX-50, originY, originX+700, originY);
-        g.drawLine(originX+680, originY-10, originX+700, originY);
-        g.drawLine(originX+680, originY+10, originX+700, originY);
-        g.drawString("x", originX+350, originY+70);
+        g.drawLine(originX-50, originY, originX+900, originY);
+        g.drawLine(originX+880, originY-10, originX+900, originY);
+        g.drawLine(originX+880, originY+10, originX+900, originY);
+        g.drawString("x", originX+450, originY+70);
 
         // 軸(y) 500
-        g.drawLine(originX, originY+50, originX, originY-500);
-        g.drawLine(originX-10, originY-480, originX, originY-500);
-        g.drawLine(originX+10, originY-480, originX, originY-500);
-        g.drawString("y", originX-70, originY-250);
+        g.drawLine(originX, originY+50, originX, originY-600);
+        g.drawLine(originX-10, originY-580, originX, originY-600);
+        g.drawLine(originX+10, originY-580, originX, originY-600);
+        g.drawString("y", originX-70, originY-300);
     }
 
     /* グラフ上の座標を描画用の座標に変換する(x) */
