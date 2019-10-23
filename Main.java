@@ -32,7 +32,7 @@ public class Main extends Applet {
     public void paint(Graphics g) {
         // background
         g.setColor(white);
-        g.drawRect(0, 0, width, height);
+        g.fillRect(0, 0, width, height);
         drawGraphBase((Graphics2D)g);
     }
 
