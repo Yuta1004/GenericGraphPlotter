@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.applet.*;
 
-/* <applet code="Main.class" width="1200" height="800"></applet> */
+/* <applet code="Main.class" width="1400" height="800"></applet> */
 
 public class Main extends Applet {
 
@@ -16,7 +16,7 @@ public class Main extends Applet {
     /* Applet初期化 */
     public void init() {
         // Applet
-        width = 1200;
+        width = 1400;
         height = 800;
         white = new Color(255, 255, 255);
         black = new Color(0, 0, 0);
