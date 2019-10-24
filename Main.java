@@ -33,7 +33,7 @@ public class Main extends Applet implements AdjustmentListener {
     public void init() {
         // GUI初期化(min変更バー)
         setLayout(null);
-        minScBar = new Scrollbar(Scrollbar.HORIZONTAL, 1, 1, 1, 100);
+        minScBar = new Scrollbar(Scrollbar.HORIZONTAL, 0, 1, 0, 99);
         minScBar.setBounds(1100, 150, 250, 20);
         minScBar.addAdjustmentListener(this);
         add(minScBar);
@@ -45,7 +45,7 @@ public class Main extends Applet implements AdjustmentListener {
         add(maxScBar);
 
         // GUI初期化(scaleX変更バー)
-        scaleXScBar = new Scrollbar(Scrollbar.HORIZONTAL, 1, 1, 1, 70);
+        scaleXScBar = new Scrollbar(Scrollbar.HORIZONTAL, 72, 1, 1, 72);
         scaleXScBar.setBounds(1100, 350, 250, 20);
         scaleXScBar.addAdjustmentListener(this);
         add(scaleXScBar);
@@ -77,7 +77,14 @@ public class Main extends Applet implements AdjustmentListener {
     }
 
     /* adjustmentValueChanged : GUIイベント受け取り */
-    public void adjustmentValueChanged(AdjustmentEvent e) { }
+    public void adjustmentValueChanged(AdjustmentEvent e) {
+        min = minScBar.getValue();
+        max = maxScBar.getValue();
+        scaleX = scaleXScBar.getValue() + 7.5;
+        dx = dxScBar.getValue() / 100.0;
+        System.out.println(min + " " + max + " " + scaleX + " " + dx);
+        repaint();
+    }
 
     /* makeXArray : xの値をとる配列を生成する */
     private double[] makeXArray(double min, double max, double diff) {
