@@ -1,19 +1,36 @@
 import java.awt.*;
+import java.awt.event.*;
 import java.applet.*;
 import GraphDrawer.GraphDrawer;
 import ESParser.ScriptParser;
 
 /* <applet code="Main.class" width="1400" height="800"></applet> */
 
-public class Main extends Applet {
+public class Main extends Applet implements AdjustmentListener {
 
     // グラフ描画用
     private int originX, originY, min, max;
     private double scaleX, scaleY, dx, dy;
     String script;
 
+    // GUI部品
+    private Scrollbar minScBar, maxScBar;
+
     /* 初期化 */
     public void init() {
+        // GUI初期化(min変更バー)
+        setLayout(null);
+        minScBar = new Scrollbar(Scrollbar.HORIZONTAL, 60, 1, 1, 13);
+        minScBar.setBounds(1100, 170, 250, 20);
+        minScBar.addAdjustmentListener(this);
+        add(minScBar);
+
+        // GUI初期化(max変更バー)
+        maxScBar = new Scrollbar(Scrollbar.HORIZONTAL, 60, 1, 1, 13);
+        maxScBar.setBounds(1100, 240, 250, 20);
+        maxScBar.addAdjustmentListener(this);
+        add(maxScBar);
+
         // グラフ
         originX = 100;
         originY = 670;
@@ -45,6 +62,9 @@ public class Main extends Applet {
         }
         gd.draw((Graphics2D)g);
     }
+
+    /* GUIイベント受け取り */
+    public void adjustmentValueChanged(AdjustmentEvent e) { }
 
     /* makeXArray : xの値をとる配列を生成する */
     private double[] makeXArray(double min, double max, double diff) {
