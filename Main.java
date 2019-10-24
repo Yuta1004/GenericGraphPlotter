@@ -26,9 +26,9 @@ public class Main extends Applet {
         originY = 670;
         scaleX = 80.0;
         scaleY = 80.0;
-        dx = 0.1;
+        dx = 0.05;
         dy = 1.0;
-        script = "plot 2*sin(x) + 2";
+        script = "var a, b, c, d\na = 1.2\nb = -1.2\nc = 1.2\nd = 0.1\nplot sin(a*x + b) + cos(c*x + d) + 2";
     }
 
     /* Applet描画 */
