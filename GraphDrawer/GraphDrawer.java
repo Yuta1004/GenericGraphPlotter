@@ -8,6 +8,7 @@ public class GraphDrawer {
 
     // Applet用
     private Color white, black, gray;
+    private Color colors[];
     private Font font, boldFont;
 
     // グラフ用
@@ -17,10 +18,18 @@ public class GraphDrawer {
 
     /* コンストラクタ */
     public GraphDrawer(int oX, int oY, double sX, double sY, double dx, double dy) {
-        // Applet
+        // Applet(Color)
+        colors = new Color[5];
+        colors[0] = new Color(255, 93, 93);
+        colors[1] = new Color(207, 95, 255);
+        colors[2] = new Color(93, 126, 255);
+        colors[3] = new Color(59, 173, 77);
+        colors[4] = new Color(163, 185, 0);
         white = new Color(255, 255, 255);
         black = new Color(0, 0, 0);
         gray = new Color(100, 100, 100);
+
+        // Applet(Font)
         font = new Font("TimesRoman", Font.PLAIN, 30);
         boldFont = new Font("TimesRomas", Font.BOLD, 30);
 
@@ -37,7 +46,9 @@ public class GraphDrawer {
     /* draw : 描画 */
     public void draw(Graphics2D g) {
         drawBase(g);
+        int idx = 0;
         for(GraphPlotter gp: graph) {
+            gp.setColor(colors[(idx++)%5]);
             gp.setStroke(5);
             gp.plot(g);
         }
