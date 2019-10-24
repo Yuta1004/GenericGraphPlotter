@@ -14,7 +14,7 @@ public class Main extends Applet implements AdjustmentListener {
     String script;
 
     // GUI部品
-    private Scrollbar minScBar, maxScBar;
+    private Scrollbar minScBar, maxScBar, scaleXScBar, dxScBar;
 
     /* コンストラクタ */
     public Main() {
@@ -33,16 +33,28 @@ public class Main extends Applet implements AdjustmentListener {
     public void init() {
         // GUI初期化(min変更バー)
         setLayout(null);
-        minScBar = new Scrollbar(Scrollbar.HORIZONTAL, 60, 1, 1, 13);
-        minScBar.setBounds(1100, 170, 250, 20);
+        minScBar = new Scrollbar(Scrollbar.HORIZONTAL, 1, 1, 1, 100);
+        minScBar.setBounds(1100, 150, 250, 20);
         minScBar.addAdjustmentListener(this);
         add(minScBar);
 
         // GUI初期化(max変更バー)
-        maxScBar = new Scrollbar(Scrollbar.HORIZONTAL, 60, 1, 1, 13);
-        maxScBar.setBounds(1100, 240, 250, 20);
+        maxScBar = new Scrollbar(Scrollbar.HORIZONTAL, 10, 1, 1, 100);
+        maxScBar.setBounds(1100, 250, 250, 20);
         maxScBar.addAdjustmentListener(this);
         add(maxScBar);
+
+        // GUI初期化(scaleX変更バー)
+        scaleXScBar = new Scrollbar(Scrollbar.HORIZONTAL, 1, 1, 1, 70);
+        scaleXScBar.setBounds(1100, 350, 250, 20);
+        scaleXScBar.addAdjustmentListener(this);
+        add(scaleXScBar);
+
+        // GUI初期化(dx変更バー)
+        dxScBar = new Scrollbar(Scrollbar.HORIZONTAL, 50, 1, 1, 100);
+        dxScBar.setBounds(1100, 450, 250, 20);
+        dxScBar.addAdjustmentListener(this);
+        add(dxScBar);
     }
 
     /* paint : Applet描画 */
