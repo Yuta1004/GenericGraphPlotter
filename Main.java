@@ -45,7 +45,7 @@ public class Main extends Applet implements AdjustmentListener {
         add(maxScBar);
 
         // GUI初期化(scaleX変更バー)
-        scaleXScBar = new Scrollbar(Scrollbar.HORIZONTAL, 72, 1, 1, 72);
+        scaleXScBar = new Scrollbar(Scrollbar.HORIZONTAL, 72, 1, 8, 80);
         scaleXScBar.setBounds(1100, 350, 250, 20);
         scaleXScBar.addAdjustmentListener(this);
         add(scaleXScBar);
@@ -78,11 +78,16 @@ public class Main extends Applet implements AdjustmentListener {
 
     /* adjustmentValueChanged : GUIイベント受け取り */
     public void adjustmentValueChanged(AdjustmentEvent e) {
-        min = minScBar.getValue();
-        max = maxScBar.getValue();
-        scaleX = scaleXScBar.getValue() + 7.5;
+        // 値取得
+        min = Math.min(minScBar.getValue(), max-1);
+        max = Math.max(maxScBar.getValue(), min+1);
+        scaleX = Math.min(scaleXScBar.getValue(), 900/max);
         dx = dxScBar.getValue() / 100.0;
-        System.out.println(min + " " + max + " " + scaleX + " " + dx);
+
+        // 値補正
+        minScBar.setValue(min);
+        maxScBar.setValue(max);
+        scaleXScBar.setValue((int)scaleX);
         repaint();
     }
 
