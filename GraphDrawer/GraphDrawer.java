@@ -43,6 +43,13 @@ public class GraphDrawer {
         this.dy = dy;
     }
 
+    /* addGraph : 描画グラフ追加 */
+    public void addGraph(double xArray[], double yArray[]) {
+        GraphPlotter gp = new GraphPlotter(originX, originY, scaleX, scaleY);
+        gp.setGraph(xArray, yArray);
+        graph.add(gp);
+    }
+
     /* draw : 描画 */
     public void draw(Graphics2D g) {
         drawBase(g);
@@ -52,13 +59,6 @@ public class GraphDrawer {
             gp.setStroke(5);
             gp.plot(g);
         }
-    }
-
-    /* addGraph : 描画グラフ追加 */
-    public void addGraph(double xArray[], double yArray[]) {
-        GraphPlotter gp = new GraphPlotter(originX, originY, scaleX, scaleY);
-        gp.setGraph(xArray, yArray);
-        graph.add(gp);
     }
 
     /* drawBase : 描画(ベース) */
