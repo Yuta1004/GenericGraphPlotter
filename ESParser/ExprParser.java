@@ -152,11 +152,11 @@ public class ExprParser {
 
         while(true) {
             if(checkPrefix("*")) {
-                node = new Node(node, num(), NodeKind.MUL);
+                node = new Node(node, unary(), NodeKind.MUL);
                 continue;
             }
             else if(checkPrefix("/")) {
-                node = new Node(node, num(), NodeKind.DIV);
+                node = new Node(node, unary(), NodeKind.DIV);
                 continue;
             }
             break;
