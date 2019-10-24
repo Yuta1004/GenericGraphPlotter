@@ -38,6 +38,7 @@ public class GraphDrawer {
     public void draw(Graphics2D g) {
         drawBase(g);
         for(GraphPlotter gp: graph) {
+            gp.setStroke(5);
             gp.plot(g);
         }
     }
