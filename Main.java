@@ -74,6 +74,14 @@ public class Main extends Applet implements AdjustmentListener {
             gd.addGraph(xArray, sp.calcGraph(idx, xArray));
         }
         gd.draw((Graphics2D)g);
+
+
+        // GUI部品の説明
+        g.setColor(new Color(0, 0, 0));
+        g.drawString("Min : " + min, 1100, 130);
+        g.drawString("Max : " + max, 1100, 230);
+        g.drawString("Scale : " + scaleX, 1100, 330);
+        g.drawString("dx : " + dx, 1100, 430);
     }
 
     /* adjustmentValueChanged : GUIイベント受け取り */
