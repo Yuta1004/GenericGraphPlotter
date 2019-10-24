@@ -77,11 +77,15 @@ public class GraphDrawer {
         g.setFont(font);
 
         // 補助線(x)
+        int judgeS = Math.max((int)(0.1 / dx), 1);
+        int judgeM = Math.max((int)(0.5 / dx), 1);
+        int judgeL = (int)(1.0 / dx);
         for(int idx = 1; idx*dx*scaleX <= 870; ++ idx) {
             // 線
             x = (int)(idx*dx*scaleX) + originX;
-            size = (idx % 5) == 0 ? 15 : 10;
-            size = (idx % 10) == 0 ? 20 : size;
+            size = (idx % judgeS) == 0 ? 10 : 0;
+            size = (idx % judgeM) == 0 ? 15 : size;
+            size = (idx % judgeL) == 0 ? 20 : size;
             g.drawLine(x, originY-size, x, originY+size);
 
             // 数
