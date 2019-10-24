@@ -16,7 +16,20 @@ public class Main extends Applet implements AdjustmentListener {
     // GUI部品
     private Scrollbar minScBar, maxScBar;
 
-    /* init : 初期化 */
+    /* コンストラクタ */
+    public Main() {
+        originX = 100;
+        originY = 670;
+        scaleX = 80; // 8.5 ~ 80
+        scaleY = 80.0;
+        min = 0;
+        max = 10;  // 10 ~ 100
+        dx = 0.05;
+        dy = 1.0;
+        script = "var a, b, c, d\na = 1.2\nb = -1.2\nc = 1.2\nd = 0.1\nplot sin(a*x + b) + cos(c*x + d) + 2";
+    }
+
+    /* init : Applet初期化 */
     public void init() {
         // GUI初期化(min変更バー)
         setLayout(null);
@@ -30,18 +43,6 @@ public class Main extends Applet implements AdjustmentListener {
         maxScBar.setBounds(1100, 240, 250, 20);
         maxScBar.addAdjustmentListener(this);
         add(maxScBar);
-
-        // グラフ
-        originX = 100;
-        originY = 670;
-        scaleX = 80.0;
-        scaleY = 80.0;
-        min = 0;
-        max = 10;
-        dx = 0.05;
-        dy = 1.0;
-        script = "var a, b, c, d\na = 1.2\nb = -1.2\nc = 1.2\nd = 0.1\nplot sin(a*x + b) + cos(c*x + d) + 2";
-        // script = "var i, t\ni = 0\nloop: i < 10\nt = 2*PI*(i/10)\nplot 2*sin(x+t)+2\ni = i+1\nend";
     }
 
     /* paint : Applet描画 */
