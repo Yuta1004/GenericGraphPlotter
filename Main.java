@@ -42,7 +42,7 @@ public class Main extends Applet {
         sp.parse();
 
         // グラフ
-        double xArray[] = makeXArray(0, 10, 0.1);
+        double xArray[] = makeXArray(0, 10, dx);
         GraphDrawer gd = new GraphDrawer(originX, originY, scaleX, scaleY, dx, dy);
         for(int idx = 0; idx < sp.getGraphNum(); ++ idx) {
             gd.addGraph(xArray, sp.calcGraph(idx, xArray));
