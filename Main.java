@@ -86,10 +86,14 @@ public class Main extends Applet implements AdjustmentListener {
     /* adjustmentValueChanged : GUIイベント受け取り */
     public void adjustmentValueChanged(AdjustmentEvent e) {
         // 値取得
+        int oldMax = max;
         min = Math.min(minScBar.getValue(), max-1);
         max = Math.max(maxScBar.getValue(), min+1);
-        scaleX = Math.min(scaleXScBar.getValue(), 900/max);
         dx = dxScBar.getValue() / 100.0;
+        scaleX = Math.min(scaleXScBar.getValue(), 850/max);
+        if(oldMax != max) {
+            scaleX = 850/max;
+        }
 
         // 値補正
         minScBar.setValue(min);
