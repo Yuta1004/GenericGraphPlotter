@@ -34,25 +34,25 @@ public class Main extends Applet implements AdjustmentListener {
         // GUI初期化(min変更バー)
         setLayout(null);
         minScBar = new Scrollbar(Scrollbar.HORIZONTAL, 0, 1, 0, 99);
-        minScBar.setBounds(1100, 150, 250, 20);
+        minScBar.setBounds(1050, 150, 310, 20);
         minScBar.addAdjustmentListener(this);
         add(minScBar);
 
         // GUI初期化(max変更バー)
         maxScBar = new Scrollbar(Scrollbar.HORIZONTAL, 10, 1, 1, 100);
-        maxScBar.setBounds(1100, 250, 250, 20);
+        maxScBar.setBounds(1050, 250, 310, 20);
         maxScBar.addAdjustmentListener(this);
         add(maxScBar);
 
         // GUI初期化(scaleX変更バー)
         scaleXScBar = new Scrollbar(Scrollbar.HORIZONTAL, 72, 1, 8, 80);
-        scaleXScBar.setBounds(1100, 350, 250, 20);
+        scaleXScBar.setBounds(1050, 350, 310, 20);
         scaleXScBar.addAdjustmentListener(this);
         add(scaleXScBar);
 
         // GUI初期化(dx変更バー)
         dxScBar = new Scrollbar(Scrollbar.HORIZONTAL, 50, 1, 1, 100);
-        dxScBar.setBounds(1100, 450, 250, 20);
+        dxScBar.setBounds(1050, 450, 310, 20);
         dxScBar.addAdjustmentListener(this);
         add(dxScBar);
     }
@@ -75,13 +75,12 @@ public class Main extends Applet implements AdjustmentListener {
         }
         gd.draw((Graphics2D)g);
 
-
         // GUI部品の説明
         g.setColor(new Color(0, 0, 0));
-        g.drawString("Min : " + min, 1100, 130);
-        g.drawString("Max : " + max, 1100, 230);
-        g.drawString("Scale : " + scaleX, 1100, 330);
-        g.drawString("dx : " + dx, 1100, 430);
+        g.drawString("Min : " + min, 1050, 130);
+        g.drawString("Max : " + max, 1050, 230);
+        g.drawString("Scale : " + scaleX, 1050, 330);
+        g.drawString("dx : " + dx, 1050, 430);
     }
 
     /* adjustmentValueChanged : GUIイベント受け取り */
