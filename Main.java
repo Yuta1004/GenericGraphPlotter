@@ -29,6 +29,7 @@ public class Main extends Applet {
         dx = 0.05;
         dy = 1.0;
         script = "var a, b, c, d\na = 1.2\nb = -1.2\nc = 1.2\nd = 0.1\nplot sin(a*x + b) + cos(c*x + d) + 2";
+        // script = "var i, t\ni = 0\nloop: i < 10\nt = 2*PI*(i/10)\nplot 2*sin(x+t)+2\ni = i+1\nend";
     }
 
     /* Applet描画 */
