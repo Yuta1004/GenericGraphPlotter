@@ -16,7 +16,7 @@ public class Main extends Applet implements AdjustmentListener {
     // GUI部品
     private Scrollbar minScBar, maxScBar;
 
-    /* 初期化 */
+    /* init : 初期化 */
     public void init() {
         // GUI初期化(min変更バー)
         setLayout(null);
@@ -44,7 +44,7 @@ public class Main extends Applet implements AdjustmentListener {
         // script = "var i, t\ni = 0\nloop: i < 10\nt = 2*PI*(i/10)\nplot 2*sin(x+t)+2\ni = i+1\nend";
     }
 
-    /* Applet描画 */
+    /* paint : Applet描画 */
     public void paint(Graphics g) {
         // 背景
         g.setColor(new Color(255, 255, 255));
@@ -63,7 +63,7 @@ public class Main extends Applet implements AdjustmentListener {
         gd.draw((Graphics2D)g);
     }
 
-    /* GUIイベント受け取り */
+    /* adjustmentValueChanged : GUIイベント受け取り */
     public void adjustmentValueChanged(AdjustmentEvent e) { }
 
     /* makeXArray : xの値をとる配列を生成する */
