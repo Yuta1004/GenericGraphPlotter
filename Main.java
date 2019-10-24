@@ -7,9 +7,6 @@ import ESParser.ScriptParser;
 
 public class Main extends Applet {
 
-    // Applet
-    private int width, height;
-
     // グラフ描画用
     private int originX, originY, min, max;
     private double scaleX, scaleY, dx, dy;
@@ -17,10 +14,6 @@ public class Main extends Applet {
 
     /* 初期化 */
     public void init() {
-        // Applet
-        width = 1400;
-        height = 800;
-
         // グラフ
         originX = 100;
         originY = 670;
@@ -38,7 +31,7 @@ public class Main extends Applet {
     public void paint(Graphics g) {
         // 背景
         g.setColor(new Color(255, 255, 255));
-        g.fillRect(0, 0, width, height);
+        g.fillRect(0, 0, getSize().width, getSize().height);
 
         // スクリプト解析
         ScriptParser sp = new ScriptParser(script);
