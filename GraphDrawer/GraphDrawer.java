@@ -77,15 +77,10 @@ public class GraphDrawer {
         g.setFont(font);
 
         // 補助線(x)
-        int judgeS = Math.max((int)(0.1 / dx), 1);
-        int judgeM = Math.max((int)(0.5 / dx), 1);
-        int judgeL = (int)(1.0 / dx);
         for(int idx = 1; idx*dx*scaleX <= 870; ++ idx) {
             // 線
             x = (int)(idx*dx*scaleX) + originX;
-            size = (idx % judgeS) == 0 ? 10 : 0;
-            size = (idx % judgeM) == 0 ? 15 : size;
-            size = (idx % judgeL) == 0 ? 20 : size;
+            size = helperLineSize(idx, dx);
             g.drawLine(x, originY-size, x, originY+size);
 
             // 数
@@ -98,8 +93,7 @@ public class GraphDrawer {
         for(int idx = 1; idx*dy*scaleY <= 570; ++ idx) {
             // 短線
             y = originY - (int)(idx*dy*scaleY);
-            size = (idx % 5) == 0 ? 15 : 10;
-            size = (idx % 10) == 0 ? 20 : size;
+            size = helperLineSize(idx, dy);
             g.setColor(black);
             g.setStroke(new BasicStroke(2));
             g.drawLine(originX-size, y, originX+size, y);
@@ -110,5 +104,21 @@ public class GraphDrawer {
             g.setStroke(new BasicStroke(1));
             g.drawLine(originX, y, originX+900, y);
         }
+    }
+
+    /* helperLineSize : 目盛りの値に応じて補助線の長さを返す */
+    private int helperLineSize(int idx, double diff) {
+        int judgeS = Math.max((int)(0.1 / diff), 1);
+        int judgeM = Math.max((int)(0.5 / diff), 1);
+        int judgeL = (int)(1.0 / diff);
+
+        if(idx % judgeL == 0) {
+            return 20;
+        } else if(idx % judgeM == 0) {
+            return 15;
+        } else if(idx % judgeS == 0) {
+            return 10;
+        }
+        return 0;
     }
 }
