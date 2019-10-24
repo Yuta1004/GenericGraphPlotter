@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.applet.*;
 import GraphDrawer.GraphDrawer;
+import ESParser.ScriptParser;
 
 /* <applet code="Main.class" width="1400" height="800"></applet> */
 
@@ -12,6 +13,7 @@ public class Main extends Applet {
     // グラフ描画用
     private int originX, originY;
     private double scaleX, scaleY, dx, dy;
+    String script;
 
     /* 初期化 */
     public void init() {
@@ -26,6 +28,7 @@ public class Main extends Applet {
         scaleY = 80.0;
         dx = 0.1;
         dy = 1.0;
+        script = "plot 2*sin(x) + 2";
     }
 
     /* Applet描画 */
@@ -34,9 +37,26 @@ public class Main extends Applet {
         g.setColor(new Color(255, 255, 255));
         g.fillRect(0, 0, width, height);
 
+        // スクリプト解析
+        ScriptParser sp = new ScriptParser(script);
+        sp.parse();
+
         // グラフ
+        double xArray[] = makeXArray(0, 10, 0.1);
         GraphDrawer gd = new GraphDrawer(originX, originY, scaleX, scaleY, dx, dy);
+        for(int idx = 0; idx < sp.getGraphNum(); ++ idx) {
+            gd.addGraph(xArray, sp.calcGraph(idx, xArray));
+        }
         gd.draw((Graphics2D)g);
+    }
+
+    /* makeXArray : xの値をとる配列を生成する */
+    private double[] makeXArray(double min, double max, double diff) {
+        double xArray[] = new double[(int)((max - min) / diff)+1];
+        for(int idx = 0; idx < xArray.length; ++ idx) {
+            xArray[idx] = idx * diff + min;
+        }
+        return xArray;
     }
 
 }
