@@ -15,6 +15,7 @@ public class Main extends Applet implements AdjustmentListener {
 
     // GUI部品
     private Scrollbar minScBar, maxScBar, scaleXScBar, dxScBar;
+    private TextArea scriptArea;
 
     /* コンストラクタ */
     public Main() {
@@ -26,7 +27,7 @@ public class Main extends Applet implements AdjustmentListener {
         max = 10;  // 10 ~ 100
         dx = 0.5;
         dy = 1.0;
-        script = "var i, t\ni = 0\nloop: i < 5\nt = 4*PI*(i/10)\nplot 2*sin(x+t)+2\ni = i+1\nend";
+        script = "var i, t\ni = 0\n\nloop: i < 5\n    t = 4*PI*(i/10)\n    plot 2*sin(x+t)+2\n    i = i+1\nend";
     }
 
     /* init : Applet初期化 */
@@ -55,6 +56,12 @@ public class Main extends Applet implements AdjustmentListener {
         dxScBar.setBounds(1050, 450, 310, 20);
         dxScBar.addAdjustmentListener(this);
         add(dxScBar);
+
+        // スクリプト用TextField
+        scriptArea = new TextArea(script, 50, 50);
+        scriptArea.setBounds(200, 170, 650, 500);
+        scriptArea.setFont(new Font("Monaco", Font.PLAIN, 30));
+        add(scriptArea);
     }
 
     /* paint : Applet描画 */
