@@ -84,53 +84,34 @@ public class GraphDrawer {
         g.drawString("y", originX-70, originY-600);
 
         // 補助線
-        int x, y, size;
         g.setStroke(new BasicStroke(2));
         g.setFont(font);
 
         // 補助線(x)
-        for(int idx = 1; idx*dx*scaleX <= 870; ++ idx) {
-            // 線
-            x = (int)(idx*dx*scaleX) + originX;
-            size = helperLineSize(idx, dx);
-            g.drawLine(x, originY-size, x, originY+size);
-
-            // 数
-            if(size == 20) {
-                g.drawString(String.valueOf((int)(idx*dx)), x-10, originY+50);
-            }
+        for(int x = 1; x*scaleX <= 870; ++ x) {
+            int drawX = (int)(x*scaleX) + originX;
+            int size = helperLineSize(x);
+            g.drawLine(drawX, originY-size, drawX, originY+size);
+            if(x % 10 == 0)
+                g.drawString(String.valueOf(x), drawX-10, originY+50);
         }
 
         // 補助線(y)
-        for(int idx = 1; idx*dy*scaleY <= 570; ++ idx) {
-            // 短線
-            y = originY - (int)(idx*dy*scaleY);
-            size = helperLineSize(idx, dy);
-            g.setColor(black);
-            g.setStroke(new BasicStroke(2));
-            g.drawLine(originX-size, y, originX+size, y);
-            g.drawString(String.valueOf((int)(idx*dy)), originX-50, y+12);
-
-            // 長線
-            g.setColor(gray);
-            g.setStroke(new BasicStroke(1));
-            g.drawLine(originX, y, originX+900, y);
+        for(int y = 1; y*scaleY <= 570; ++ y) {
+            int drawY = originY - (int)(y*scaleY);
+            int size = helperLineSize(y);
+            g.drawLine(originX-size, drawY, originX+size, drawY);
+            g.drawString(String.valueOf(y), originX-50, drawY+12);
         }
     }
 
     /* helperLineSize : 目盛りの値に応じて補助線の長さを返す */
-    private int helperLineSize(int idx, double diff) {
-        int judgeS = Math.max((int)(0.1 / diff), 1);
-        int judgeM = Math.max((int)(0.5 / diff), 1);
-        int judgeL = (int)(1.0 / diff);
-
-        if(idx % judgeL == 0) {
+    private int helperLineSize(int x) {
+        if(x % 10 == 0) {
             return 20;
-        } else if(idx % judgeM == 0) {
+        } else if(x % 5 == 0) {
             return 15;
-        } else if(idx % judgeS == 0) {
-            return 10;
         }
-        return 0;
+        return 10;
     }
 }
