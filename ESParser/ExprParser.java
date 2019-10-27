@@ -213,7 +213,7 @@ public class ExprParser {
         int idx = 0;
         for(; idx < expr.length(); ++ idx) {
             char c = expr.charAt(idx);
-            if(!('0' <= c && c <= '9') || !(c != '.'))
+            if(!('0' <= c && c <= '9') && c != '.')
                 break;
         }
 
