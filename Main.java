@@ -16,6 +16,7 @@ public class Main extends Applet implements AdjustmentListener {
     // GUI部品
     private Scrollbar minScBar, maxScBar, scaleXScBar, dxScBar;
     private TextArea scriptArea;
+    private Button editBtn;
 
     /* コンストラクタ */
     public Main() {
@@ -62,6 +63,12 @@ public class Main extends Applet implements AdjustmentListener {
         scriptArea.setBounds(200, 170, 650, 500);
         scriptArea.setFont(new Font("Monaco", Font.PLAIN, 30));
         add(scriptArea);
+
+        // エディタ起動ボタン
+        editBtn = new Button("Edit Script");
+        editBtn.setBounds(1050, 510, 310, 70);
+        editBtn.setFont(new Font("Hannotate", Font.PLAIN, 25));
+        add(editBtn);
     }
 
     /* paint : Applet描画 */
