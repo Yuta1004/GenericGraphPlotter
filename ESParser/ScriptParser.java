@@ -66,8 +66,7 @@ public class ScriptParser {
 
             // グラフ追加
             if(line.startsWith("plot")) {
-                line = line.split(" ")[1];
-                ExprParser ep = new ExprParser(line);
+                ExprParser ep = new ExprParser(line.split(" ")[1]);
                 ep = setVar(ep);
                 ep.parse();
                 expr.add(ep);
