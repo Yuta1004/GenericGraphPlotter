@@ -208,25 +208,17 @@ public class ExprParser {
 
     /* getNum : 式の先頭から字を読み取る */
     private double getNum() {
+        // 有効な数字が続く長さを調べる
         skipSpace();
-        double num = 0;
-        int idx = 0, parsingDec = -1;
-
+        int idx = 0;
         for(; idx < expr.length(); ++ idx) {
-            if('0' <= expr.charAt(idx) && expr.charAt(idx) <= '9') {    // 数字
-                if(parsingDec != -1){   // 小数部分
-                    num = num + (expr.charAt(idx)-'0') / Math.pow(10, idx-parsingDec);
-                } else {                // 整数部分
-                    num = num * 10 + expr.charAt(idx) - '0';
-                }
-            }
-            else if('.' == expr.charAt(idx)){   // 小数点
-                parsingDec = idx;
-            }
-            else {                              // EOF
+            char c = expr.charAt(idx);
+            if(!('0' <= c && c <= '9') || !(c != '.'))
                 break;
-            }
         }
+
+        // 対象範囲を数字に変換
+        double num = Double.parseDouble(expr.substring(0, idx));
         expr = expr.substring(idx, expr.length());
         return num;
     }
