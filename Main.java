@@ -28,7 +28,7 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         max = 10;  // 10 ~ 100
         dx = 0.5;
         dy = 1.0;
-        script = "var i, t\ni = 0\n\nloop: i < 5\n    t = 4*PI*(i/10)\n    plot << 2*sin(x+t)+2\n    i = i+1\nend";
+        script = "var a, b, c, d\na = 1.2\nb = -1.2\nc = 1.2\nd = 0.1\n\nplotd << sin(a*x + b) + cos(c*x + d) + 2";
     }
 
     /* init : Applet初期化 */
