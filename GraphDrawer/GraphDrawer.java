@@ -100,7 +100,12 @@ public class GraphDrawer {
         for(int y = 1; y*scaleY <= 570; ++ y) {
             int drawY = originY - (int)(y*scaleY);
             int size = helperLineSize(y);
+            g.setColor(black);
+            g.setStroke(new BasicStroke(2));
             g.drawLine(originX-size, drawY, originX+size, drawY);
+            g.setColor(gray);
+            g.setStroke(new BasicStroke(1));
+            g.drawLine(originX, drawY, 900, drawY);
             g.drawString(String.valueOf(y), originX-50, drawY+12);
         }
     }
