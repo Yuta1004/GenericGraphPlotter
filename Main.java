@@ -6,7 +6,7 @@ import ESParser.ScriptParser;
 
 /* <applet code="Main.class" width="1400" height="800"></applet> */
 
-public class Main extends Applet implements AdjustmentListener {
+public class Main extends Applet implements AdjustmentListener, ActionListener {
 
     // グラフ描画用
     private int originX, originY, min, max;
@@ -68,6 +68,7 @@ public class Main extends Applet implements AdjustmentListener {
         editBtn = new Button("Edit Script");
         editBtn.setBounds(1050, 510, 310, 70);
         editBtn.setFont(new Font("Hannotate", Font.PLAIN, 25));
+        editBtn.addActionListener(this);
         add(editBtn);
     }
 
@@ -119,6 +120,19 @@ public class Main extends Applet implements AdjustmentListener {
         maxScBar.setValue(max);
         scaleXScBar.setValue((int)scaleX);
         repaint();
+    }
+
+    /* actionPerformed : GUIイベント受取 */
+    public void actionPerformed(ActionEvent e) {
+        if(scriptArea.isVisible()) {            // 入力エリア表示中だった
+            editBtn.setLabel("Edit Script");
+            scriptArea.setVisible(false);
+            script = scriptArea.getText();
+            repaint();
+        } else {                                // 入力エリア表示中じゃなかった
+            editBtn.setLabel("Exec Script");
+            scriptArea.setVisible(true);
+        }
     }
 
     /* makeXArray : xの値をとる配列を生成する */
