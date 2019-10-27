@@ -16,7 +16,7 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
     // GUI部品
     private Scrollbar minScBar, maxScBar, scaleXScBar, dxScBar;
     private TextArea scriptArea, viewSArea;
-    private Button editBtn;
+    private Button editBtn, helpBtn;
 
     /* コンストラクタ */
     public Main() {
@@ -78,6 +78,13 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         editBtn.setFont(new Font("Hannotate", Font.PLAIN, 25));
         editBtn.addActionListener(this);
         add(editBtn);
+
+        // ヘルプボタン
+        helpBtn = new Button("?");
+        helpBtn.setBounds(740, 30, 30, 30);
+        helpBtn.setFont(new Font("Hannotate", Font.PLAIN, 20));
+        helpBtn.addActionListener(this);
+        add(helpBtn);
     }
 
     /* paint : Applet描画 */
