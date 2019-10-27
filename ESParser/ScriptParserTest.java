@@ -19,7 +19,7 @@ class ScriptParserTest {
     private static void test2() {
         String script[] = {
             "var a, b",
-            "plot sin(a) + cos(b)",
+            "plot << sin(a) + cos(b)",
         };
         ScriptParser parser = new ScriptParser(String.join("\n", script));
         parser.parse();
@@ -31,7 +31,7 @@ class ScriptParserTest {
             "a = 10",
             "b = 20",
             "c = a + b",
-            "plot sin(a) + cos(b)",
+            "plot << sin(a) + cos(b)",
         };
         ScriptParser parser = new ScriptParser(String.join("\n", script));
         parser.parse();
@@ -70,7 +70,7 @@ class ScriptParserTest {
 
     private static void test6() {
         String script[] = {
-            "plot sinx",
+            "plot << sinx",
         };
         ScriptParser parser = new ScriptParser(String.join("\n", script));
         parser.parse();
