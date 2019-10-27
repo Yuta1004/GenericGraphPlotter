@@ -119,6 +119,8 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         // その他
         g.setFont(new Font("TimesRoman", Font.BOLD, 40));
         g.drawString("General Graph Plotter", 340, 50);
+        if(scriptArea.isVisible())
+            g.fillRect(190, 160, 670, 520);
     }
 
     /* adjustmentValueChanged : GUIイベント受け取り */
@@ -147,11 +149,11 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
             editBtn.setLabel("Edit Script");
             scriptArea.setVisible(false);
             script = scriptArea.getText();
-            repaint();
         } else {                                // 入力エリア表示中じゃなかった
             editBtn.setLabel("Exec Script");
             scriptArea.setVisible(true);
         }
+        repaint();
     }
 
     /* makeXArray : xの値をとる配列を生成する */
