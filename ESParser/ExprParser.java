@@ -248,7 +248,7 @@ public class ExprParser {
 
     /* skipSpace : 式先頭にある空白を読み飛ばす*/
     private void skipSpace() {
-        while(expr.length() > 0 && expr.charAt(0) == ' ') {
+        while(expr.length() > 0 && (expr.charAt(0) == ' ' || expr.charAt(0) == '\t')) {
             expr = expr.substring(1, expr.length());
         }
     }

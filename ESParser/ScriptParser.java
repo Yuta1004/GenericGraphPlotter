@@ -118,7 +118,7 @@ public class ScriptParser {
 
     /* skipSpace : 式先頭にある空白を読み飛ばす*/
     private String skipSpace(String target) {
-        while(target.length() > 0 && target.charAt(0) == ' ') {
+        while(target.length() > 0 && (target.charAt(0) == ' ' || target.charAt(0) == '\t')) {
             target = target.substring(1, target.length());
         }
         return target;
