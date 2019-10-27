@@ -94,6 +94,7 @@ public class Main extends Applet implements AdjustmentListener {
         if(oldMax != max) {
             scaleX = 850/max;
         }
+        scaleX = Math.min(80.0, scaleX);
 
         // 値補正
         minScBar.setValue(min);
