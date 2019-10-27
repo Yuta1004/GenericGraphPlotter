@@ -89,11 +89,15 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         ScriptParser sp = new ScriptParser(script);
         sp.parse();
 
-        // グラフ
-        double xArray[] = makeXArray(min, max, dx);
+        // グラフ & 数値積分
+        int graphNum = sp.getGraphNum();
+        double xArray[] = makeXArray(min, max, dx), yArray[];
+        double sList[] = new double[graphNum];
         GraphDrawer gd = new GraphDrawer(originX, originY, scaleX, scaleY, dx, dy);
-        for(int idx = 0; idx < sp.getGraphNum(); ++ idx) {
-            gd.addGraph(idx, xArray, sp.calcGraph(idx, xArray), sp.getVDSetting(idx));
+        for(int idx = 0; idx < graphNum; ++ idx) {
+            yArray = sp.calcGraph(idx, xArray);
+            sList[idx] = numIntegration(dx, yArray);
+            gd.addGraph(idx, xArray, yArray, sp.getVDSetting(idx));
         }
         gd.draw((Graphics2D)g);
 
@@ -149,6 +153,15 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
             xArray[idx] = idx * diff + min;
         }
         return xArray;
+    }
+
+    /* numIntegration : 数値積分を行いその結果を返す */
+    private double numIntegration(double dx, double yArray[]) {
+        double sum = 0;
+        for(int idx = 0; idx < yArray.length-1; ++ idx) {
+            sum += yArray[idx];
+        }
+        return sum * dx;
     }
 
 }
