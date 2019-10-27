@@ -152,14 +152,19 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
 
     /* actionPerformed : GUIイベント受取 */
     public void actionPerformed(ActionEvent e) {
-        if(scriptArea.isVisible()) {            // 入力エリア表示中だった
+        switch(e.getActionCommand()) {
+        case "Exec Script":
             editBtn.setLabel("Edit Script");
             scriptArea.setVisible(false);
             script = scriptArea.getText();
-        } else {                                // 入力エリア表示中じゃなかった
+            break;
+
+        case "Edit Script":
             editBtn.setLabel("Exec Script");
             scriptArea.setVisible(true);
+            break;
         }
+
         repaint();
     }
 
