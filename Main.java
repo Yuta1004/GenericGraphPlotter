@@ -71,7 +71,7 @@ public class Main extends Applet implements AdjustmentListener {
         double xArray[] = makeXArray(min, max, dx);
         GraphDrawer gd = new GraphDrawer(originX, originY, scaleX, scaleY, dx, dy);
         for(int idx = 0; idx < sp.getGraphNum(); ++ idx) {
-            gd.addGraph(xArray, sp.calcGraph(idx, xArray), sp.getVDSetting(idx));
+            gd.addGraph(idx, xArray, sp.calcGraph(idx, xArray), sp.getVDSetting(idx));
         }
         gd.draw((Graphics2D)g);
 

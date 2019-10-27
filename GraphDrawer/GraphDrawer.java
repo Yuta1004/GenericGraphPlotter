@@ -2,7 +2,7 @@ package GraphDrawer;
 
 import java.awt.*;
 import java.applet.*;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GraphDrawer {
 
@@ -14,7 +14,7 @@ public class GraphDrawer {
     // グラフ用
     private int originX, originY;
     private double scaleX, scaleY, dx, dy;
-    private ArrayList<GraphPlotter> graph;
+    private HashMap<Integer, GraphPlotter> graph;
 
     /* コンストラクタ */
     public GraphDrawer(int oX, int oY, double sX, double sY, double dx, double dy) {
@@ -34,7 +34,7 @@ public class GraphDrawer {
         boldFont = new Font("TimesRomas", Font.BOLD, 30);
 
         // グラフ
-        graph = new ArrayList<GraphPlotter>();
+        graph = new HashMap<Integer, GraphPlotter>();
         originX = oX;
         originY = oY;
         scaleX = sX;
@@ -44,18 +44,19 @@ public class GraphDrawer {
     }
 
     /* addGraph : 描画グラフ追加 */
-    public void addGraph(double xArray[], double yArray[], boolean viewDetail) {
+    public void addGraph(int gID, double xArray[], double yArray[], boolean viewDetail) {
         GraphPlotter gp = new GraphPlotter(originX, originY, scaleX, scaleY);
         gp.setGraph(xArray, yArray);
         gp.setViewDetail(viewDetail);
-        graph.add(gp);
+        graph.put(gID, gp);
     }
 
     /* draw : 描画 */
     public void draw(Graphics2D g) {
         drawBase(g);
         int idx = 0;
-        for(GraphPlotter gp: graph) {
+        for(int gID: graph.keySet()) {
+            GraphPlotter gp = graph.get(gID);
             gp.setColor(colors[(idx++)%5]);
             gp.setStroke(5);
             gp.plot(g);
