@@ -101,6 +101,12 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         }
         gd.draw((Graphics2D)g);
 
+        // 面積表示
+        String viewSMsg = "";
+        for(int idx = 0; idx < sList.length; ++ idx)
+            viewSMsg += String.valueOf((char)('A'+idx)) + " : " + String.valueOf(sList[idx]) + "\n";
+        viewSArea.setText(viewSMsg);
+
         // GUI部品の説明
         g.setColor(new Color(0, 0, 0));
         g.drawString("Min : " + min, 1050, 50);
