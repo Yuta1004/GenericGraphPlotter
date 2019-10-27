@@ -97,8 +97,8 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
 
         // グラフ & 数値積分
         int graphNum = sp.getGraphNum();
-        double xArray[] = makeXArray(min, max, dx), yArray[];
         double sList[] = new double[graphNum];
+        double xArray[] = makeXArray(min, max, dx), yArray[];
         GraphDrawer gd = new GraphDrawer(originX, originY, scaleX, scaleY, dx, dy);
         for(int idx = 0; idx < graphNum; ++ idx) {
             yArray = sp.calcGraph(idx, xArray);
