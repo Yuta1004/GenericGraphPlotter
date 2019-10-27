@@ -62,6 +62,7 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         scriptArea = new TextArea(script, 50, 50);
         scriptArea.setBounds(200, 170, 650, 500);
         scriptArea.setFont(new Font("Monaco", Font.PLAIN, 30));
+        scriptArea.setVisible(false);
         add(scriptArea);
 
         // エディタ起動ボタン
