@@ -108,10 +108,10 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         gd.draw((Graphics2D)g);
 
         // 面積表示
-        String viewSMsg = "";
-        for(int idx = 0; 0 < sList.length && idx < sList.length; ++ idx)
-            viewSMsg += String.format("%c : %.4f\n", 'A'+idx, sList[idx]);
-        viewSArea.setText( viewSMsg.substring(0, Math.max(0, viewSMsg.length()-1)) );
+        String viewSMsg[] = new String[sList.length];
+        for(int idx = 0; idx < sList.length; ++ idx)
+            viewSMsg[idx] =  String.format("%c : %.4f", 'A'+idx, sList[idx]);
+        viewSArea.setText(String.join("\n", viewSMsg));
 
         // GUI部品の説明
         g.setColor(new Color(0, 0, 0));
