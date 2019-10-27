@@ -90,7 +90,9 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         ScriptParser sp = new ScriptParser(script);
         try{
             sp.parse();
-        } catch(Exception e) {} // <- 怒らないでください
+        } catch(Exception e) {
+            viewSArea.setText(String.valueOf(e));
+        }
 
         // グラフ & 数値積分
         int graphNum = sp.getGraphNum();
@@ -106,9 +108,9 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
 
         // 面積表示
         String viewSMsg = "";
-        for(int idx = 0; idx < sList.length; ++ idx)
+        for(int idx = 0; 0 < sList.length && idx < sList.length; ++ idx)
             viewSMsg += String.format("%c : %.4f\n", 'A'+idx, sList[idx]);
-        viewSArea.setText(viewSMsg.substring(0, viewSMsg.length()-1));
+        viewSArea.setText( viewSMsg.substring(0, Math.max(0, viewSMsg.length()-1)) );
 
         // GUI部品の説明
         g.setColor(new Color(0, 0, 0));
