@@ -44,9 +44,10 @@ public class GraphDrawer {
     }
 
     /* addGraph : 描画グラフ追加 */
-    public void addGraph(double xArray[], double yArray[]) {
+    public void addGraph(double xArray[], double yArray[], boolean viewDetail) {
         GraphPlotter gp = new GraphPlotter(originX, originY, scaleX, scaleY);
         gp.setGraph(xArray, yArray);
+        gp.setViewDetail(viewDetail);
         graph.add(gp);
     }
 

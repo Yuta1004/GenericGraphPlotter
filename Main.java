@@ -26,7 +26,7 @@ public class Main extends Applet implements AdjustmentListener {
         max = 10;  // 10 ~ 100
         dx = 0.05;
         dy = 1.0;
-        script = "var i, t\ni = 0\nloop: i < 5\nt = 4*PI*(i/10)\nplot 2*sin(x+t)+2\ni = i+1\nend";
+        script = "var i, t\ni = 0\nloop: i < 5\nt = 4*PI*(i/10)\nplotd 2*sin(x+t)+2\ni = i+1\nend";
     }
 
     /* init : Applet初期化 */
@@ -71,7 +71,7 @@ public class Main extends Applet implements AdjustmentListener {
         double xArray[] = makeXArray(min, max, dx);
         GraphDrawer gd = new GraphDrawer(originX, originY, scaleX, scaleY, dx, dy);
         for(int idx = 0; idx < sp.getGraphNum(); ++ idx) {
-            gd.addGraph(xArray, sp.calcGraph(idx, xArray));
+            gd.addGraph(xArray, sp.calcGraph(idx, xArray), sp.getVDSetting(idx));
         }
         gd.draw((Graphics2D)g);
 
