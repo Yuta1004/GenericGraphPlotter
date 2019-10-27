@@ -33,25 +33,25 @@ public class Main extends Applet implements AdjustmentListener {
     public void init() {
         // GUI初期化(min変更バー)
         setLayout(null);
-        minScBar = new Scrollbar(Scrollbar.HORIZONTAL, 0, 1, 0, 99);
+        minScBar = new Scrollbar(Scrollbar.HORIZONTAL, 0, 1, 0, 100);
         minScBar.setBounds(1050, 150, 310, 20);
         minScBar.addAdjustmentListener(this);
         add(minScBar);
 
         // GUI初期化(max変更バー)
-        maxScBar = new Scrollbar(Scrollbar.HORIZONTAL, 10, 1, 1, 100);
+        maxScBar = new Scrollbar(Scrollbar.HORIZONTAL, 10, 1, 1, 101);
         maxScBar.setBounds(1050, 250, 310, 20);
         maxScBar.addAdjustmentListener(this);
         add(maxScBar);
 
         // GUI初期化(scaleX変更バー)
-        scaleXScBar = new Scrollbar(Scrollbar.HORIZONTAL, 72, 1, 8, 80);
+        scaleXScBar = new Scrollbar(Scrollbar.HORIZONTAL, 72, 1, 8, 81);
         scaleXScBar.setBounds(1050, 350, 310, 20);
         scaleXScBar.addAdjustmentListener(this);
         add(scaleXScBar);
 
         // GUI初期化(dx変更バー)
-        dxScBar = new Scrollbar(Scrollbar.HORIZONTAL, 50, 1, 1, 100);
+        dxScBar = new Scrollbar(Scrollbar.HORIZONTAL, 50, 1, 1, 101);
         dxScBar.setBounds(1050, 450, 310, 20);
         dxScBar.addAdjustmentListener(this);
         add(dxScBar);
