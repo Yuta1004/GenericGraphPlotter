@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.applet.*;
+import java.io.*;
+import java.util.stream.Collectors;
 import GraphDrawer.GraphDrawer;
 import ESParser.ScriptParser;
 
@@ -15,7 +17,7 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
 
     // GUI部品
     private Scrollbar minScBar, maxScBar, scaleXScBar, dxScBar;
-    private TextArea scriptArea, viewSArea;
+    private TextArea scriptArea, viewSArea, helpVArea;
     private Button editBtn, helpBtn;
 
     /* コンストラクタ */
@@ -85,6 +87,23 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         helpBtn.setFont(new Font("Hannotate", Font.PLAIN, 20));
         helpBtn.addActionListener(this);
         add(helpBtn);
+
+        // ヘルプ取得
+        String readme = "";
+        try {
+            File f = new File("README.md");
+            BufferedReader br = new BufferedReader(new FileReader(f));
+            readme = br.lines().collect(Collectors.joining());
+            br.close();
+        } catch (IOException e) {}
+
+        // ヘルプ表示エリア
+        helpVArea = new TextArea(readme);
+        helpVArea.setBounds(130, 100, 800, 650);
+        helpVArea.setFont(new Font("Hannotate", Font.PLAIN, 25));
+        helpVArea.setEditable(false);
+        helpVArea.setVisible(false);
+        add(helpVArea);
     }
 
     /* paint : Applet描画 */
