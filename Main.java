@@ -191,7 +191,6 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
             helpVArea.setVisible(!helpVArea.isVisible());
             break;
         }
-
         repaint();
     }
 
