@@ -210,12 +210,20 @@ public class ExprParser {
     private double getNum() {
         skipSpace();
         double num = 0;
-        int idx = 0;
+        int idx = 0, parsingDec = -1;
+
         for(; idx < expr.length(); ++ idx) {
-            if('0' <= expr.charAt(idx) && expr.charAt(idx) <= '9') {
-                num = num * 10 + expr.charAt(idx) - '0';
+            if('0' <= expr.charAt(idx) && expr.charAt(idx) <= '9') {    // 数字
+                if(parsingDec != -1){   // 小数部分
+                    num = num + (expr.charAt(idx)-'0') / Math.pow(10, idx-parsingDec);
+                } else {                // 整数部分
+                    num = num * 10 + expr.charAt(idx) - '0';
+                }
             }
-            else {
+            else if('.' == expr.charAt(idx)){   // 小数点
+                parsingDec = idx;
+            }
+            else {                              // EOF
                 break;
             }
         }
