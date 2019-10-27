@@ -68,7 +68,7 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         // 面積表示用TextArea
         viewSArea = new TextArea("", 50, 50);
         viewSArea.setBounds(1050, 510, 310, 270);
-        viewSArea.setFont(new Font("Hannotate", Font.PLAIN, 30));
+        viewSArea.setFont(new Font("Hannotate", Font.PLAIN, 33));
         viewSArea.setEditable(false);
         add(viewSArea);
 
@@ -105,7 +105,7 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         // 面積表示
         String viewSMsg = "";
         for(int idx = 0; idx < sList.length; ++ idx)
-            viewSMsg += String.valueOf((char)('A'+idx)) + " : " + String.valueOf(sList[idx]) + "\n";
+            viewSMsg += String.format("%c : %.4f\n", 'A'+idx, sList[idx]);
         viewSArea.setText(viewSMsg);
 
         // GUI部品の説明
