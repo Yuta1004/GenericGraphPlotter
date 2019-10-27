@@ -67,14 +67,14 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
 
         // 面積表示用TextArea
         viewSArea = new TextArea("", 50, 50);
-        viewSArea.setBounds(1050, 510, 310, 270);
+        viewSArea.setBounds(1050, 470, 310, 240);
         viewSArea.setFont(new Font("Hannotate", Font.PLAIN, 33));
         viewSArea.setEditable(false);
         add(viewSArea);
 
         // エディタ起動ボタン
         editBtn = new Button("Edit Script");
-        editBtn.setBounds(1050, 420, 310, 70);
+        editBtn.setBounds(1050, 720, 310, 70);
         editBtn.setFont(new Font("Hannotate", Font.PLAIN, 25));
         editBtn.addActionListener(this);
         add(editBtn);
@@ -114,6 +114,7 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         g.drawString("Max : " + max, 1050, 150);
         g.drawString("Scale : " + scaleX, 1050, 250);
         g.drawString("dx : " + dx, 1050, 350);
+        g.drawString("Surface", 1050, 450);
 
         // その他
         g.setFont(new Font("TimesRoman", Font.BOLD, 40));
