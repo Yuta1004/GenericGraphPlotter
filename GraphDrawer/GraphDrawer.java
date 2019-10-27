@@ -107,7 +107,7 @@ public class GraphDrawer {
             g.drawLine(originX-size, drawY, originX+size, drawY);
             g.setColor(gray);
             g.setStroke(new BasicStroke(1));
-            g.drawLine(originX, drawY, 900, drawY);
+            g.drawLine(originX, drawY, originX+900, drawY);
             g.drawString(String.valueOf(y), originX-50, drawY+12);
         }
 
