@@ -9,6 +9,7 @@ class GraphPlotter {
     private double scaleX, scaleY;
     private double xArray[], yArray[];
     private Color color, blackClear, grayClear;
+    private boolean viewDetail;
 
     /* コンストラクタ */
     public GraphPlotter(int oX, int oY, double sX, double sY) {
@@ -19,6 +20,7 @@ class GraphPlotter {
         color = new Color(255, 100, 100);
         blackClear = new Color(0, 0, 0, 100);
         grayClear = new Color(100, 100, 100, 100);
+        viewDetail = false;
     }
 
     /* setColor(Color c) : 色指定(Colorインスタンス) */
@@ -34,6 +36,11 @@ class GraphPlotter {
     /* setStroke : 線の太さ指定 */
     public void setStroke(int s) {
         stroke = s;
+    }
+
+    /* setViewDetail : 数値積分の可視化を行うかどうか指定する */
+    public void setViewDetail(boolean b) {
+        viewDetail = b;
     }
 
     /* setGraph : グラフ設定 */
@@ -58,12 +65,14 @@ class GraphPlotter {
             g.drawLine(x0, y0, x1, y1);
 
             // 数値積分可視化
-            g.setStroke(new BasicStroke(2));
-            g.setColor(blackClear);
-            g.drawRect(x0, y0, x1-x0, originY-y0);
-            g.setStroke(new BasicStroke(1));
-            g.setColor(grayClear);
-            g.fillRect(x0, y0, x1-x0, originY-y0);
+            if(viewDetail) {
+                g.setStroke(new BasicStroke(2));
+                g.setColor(blackClear);
+                g.drawRect(x0, y0, x1-x0, originY-y0);
+                g.setStroke(new BasicStroke(1));
+                g.setColor(grayClear);
+                g.fillRect(x0, y0, x1-x0, originY-y0);
+            }
         }
     }
 
