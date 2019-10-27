@@ -19,7 +19,7 @@ public class Main extends Applet implements AdjustmentListener {
     /* コンストラクタ */
     public Main() {
         originX = 100;
-        originY = 670;
+        originY = 700;
         scaleX = 80; // 8.5 ~ 80
         scaleY = 80.0;
         min = 0;
@@ -81,6 +81,10 @@ public class Main extends Applet implements AdjustmentListener {
         g.drawString("Max : " + max, 1050, 230);
         g.drawString("Scale : " + scaleX, 1050, 330);
         g.drawString("dx : " + dx, 1050, 430);
+
+        // その他
+        g.setFont(new Font("TimesRoman", Font.BOLD, 40));
+        g.drawString("General Graph Plotter", 510, 50);
     }
 
     /* adjustmentValueChanged : GUIイベント受け取り */
