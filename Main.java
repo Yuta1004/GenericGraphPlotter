@@ -68,6 +68,7 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         // 面積表示用TextArea
         viewSArea = new TextArea("", 50, 50);
         viewSArea.setBounds(1050, 510, 310, 270);
+        viewSArea.setFont(new Font("Hannotate", Font.PLAIN, 30));
         viewSArea.setEditable(false);
         add(viewSArea);
 
