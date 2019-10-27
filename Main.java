@@ -218,7 +218,7 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         try {
             File f = new File("README.md");
             BufferedReader br = new BufferedReader(new FileReader(f));
-            readme = br.lines().collect(Collectors.joining());
+            readme = br.lines().collect(Collectors.joining("\n"));
             br.close();
         } catch (IOException e) {
             readme = "";
