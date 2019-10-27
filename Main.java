@@ -189,6 +189,10 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
             editBtn.setLabel("Exec Script");
             scriptArea.setVisible(true);
             break;
+
+        case "?":
+            helpVArea.setVisible(!helpVArea.isVisible());
+            break;
         }
 
         repaint();
