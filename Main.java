@@ -59,15 +59,15 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         add(dxScBar);
 
         // スクリプト用TextArea
-        scriptArea = new TextArea(script, 50, 50);
+        scriptArea = new TextArea(script);
         scriptArea.setBounds(200, 170, 650, 500);
         scriptArea.setFont(new Font("Monaco", Font.PLAIN, 30));
         scriptArea.setVisible(false);
         add(scriptArea);
 
         // 面積表示用TextArea
-        viewSArea = new TextArea("", 50, 50);
-        viewSArea.setBounds(1050, 470, 310, 240);
+        viewSArea = new TextArea("");
+        viewSArea.setBounds(1050, 470, 310, 220);
         viewSArea.setFont(new Font("Hannotate", Font.PLAIN, 33));
         viewSArea.setEditable(false);
         add(viewSArea);
@@ -106,7 +106,7 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         String viewSMsg = "";
         for(int idx = 0; idx < sList.length; ++ idx)
             viewSMsg += String.format("%c : %.4f\n", 'A'+idx, sList[idx]);
-        viewSArea.setText(viewSMsg);
+        viewSArea.setText(viewSMsg.substring(0, viewSMsg.length()-1));
 
         // GUI部品の説明
         g.setColor(new Color(0, 0, 0));
