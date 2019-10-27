@@ -110,6 +110,18 @@ public class GraphDrawer {
             g.drawLine(originX, drawY, 900, drawY);
             g.drawString(String.valueOf(y), originX-50, drawY+12);
         }
+
+        // 凡例(2段組)
+        int idx = 0;
+        for(int gID: graph.keySet()) {
+            int x = (originX+650) + idx%2*140;
+            int y = (originY-520) + idx/2*50;
+            g.setColor(colors[idx%5]);
+            g.setStroke(new BasicStroke(5));
+            g.drawLine(x, y, x+50, y);
+            g.drawString(String.valueOf((char)('A'+gID)), x+70, y+10);
+            ++ idx;
+        }
     }
 
     /* helperLineSize : 目盛りの値に応じて補助線の長さを返す */
