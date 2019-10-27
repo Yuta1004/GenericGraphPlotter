@@ -90,9 +90,7 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         ScriptParser sp = new ScriptParser(script);
         try{
             sp.parse();
-        } catch(Exception e) {
-            viewSArea.setText(String.valueOf(e));
-        }
+        } catch(Exception e) {} // 怒らないでください><
 
         // グラフ & 数値積分
         int graphNum = sp.getGraphNum();
