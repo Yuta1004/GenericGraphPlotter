@@ -138,12 +138,18 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         g.drawString("dx : " + dx, 1050, 350);
         g.drawString("Surface Area", 1050, 450);
 
-        // その他
+        // タイトル
         g.setFont(new Font("TimesRoman", Font.BOLD, 40));
         g.drawString("Generic Graph Plotter", 340, 50);
+
+        // TextAreaの枠
         if(scriptArea.isVisible()) {
             g.setColor(new Color(50, 100, 255));
             g.fillRect(190, 160, 670, 520);
+        }
+        if(helpVArea.isVisible()) {
+            g.setColor(new Color(100, 255, 50));
+            g.fillRect(120, 90, 820, 670);
         }
     }
 
