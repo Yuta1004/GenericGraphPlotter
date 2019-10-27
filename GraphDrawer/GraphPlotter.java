@@ -8,7 +8,7 @@ class GraphPlotter {
     private int originX, originY, stroke;
     private double scaleX, scaleY;
     private double xArray[], yArray[];
-    private Color color;
+    private Color color, blackClear, grayClear;
 
     /* コンストラクタ */
     public GraphPlotter(int oX, int oY, double sX, double sY) {
@@ -17,6 +17,8 @@ class GraphPlotter {
         scaleX = sX;
         scaleY = sY;
         color = new Color(255, 100, 100);
+        blackClear = new Color(0, 0, 0, 100);
+        grayClear = new Color(100, 100, 100, 100);
     }
 
     /* setColor(Color c) : 色指定(Colorインスタンス) */
@@ -44,15 +46,24 @@ class GraphPlotter {
     public void plot(Graphics2D g) {
         int x0, y0, x1, y1;
         int size = Math.min(xArray.length, yArray.length);
-        g.setStroke(new BasicStroke(stroke));
-        g.setColor(color);
 
         for(int idx = 0; idx < size-1; ++ idx) {
+            // グラフ
             x0 = g2aX(xArray[idx]);
             y0 = g2aY(yArray[idx]);
             x1 = g2aX(xArray[idx+1]);
             y1 = g2aY(yArray[idx+1]);
+            g.setStroke(new BasicStroke(stroke));
+            g.setColor(color);
             g.drawLine(x0, y0, x1, y1);
+
+            // 数値積分可視化
+            g.setStroke(new BasicStroke(2));
+            g.setColor(blackClear);
+            g.drawRect(x0, y0, x1-x0, originY-y0);
+            g.setStroke(new BasicStroke(1));
+            g.setColor(grayClear);
+            g.fillRect(x0, y0, x1-x0, originY-y0);
         }
     }
 
