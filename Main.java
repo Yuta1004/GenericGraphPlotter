@@ -36,25 +36,25 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         // GUI初期化(min変更バー)
         setLayout(null);
         minScBar = new Scrollbar(Scrollbar.HORIZONTAL, 0, 1, 0, 100);
-        minScBar.setBounds(1050, 150, 310, 20);
+        minScBar.setBounds(1050, 70, 310, 20);
         minScBar.addAdjustmentListener(this);
         add(minScBar);
 
         // GUI初期化(max変更バー)
         maxScBar = new Scrollbar(Scrollbar.HORIZONTAL, 10, 1, 1, 101);
-        maxScBar.setBounds(1050, 250, 310, 20);
+        maxScBar.setBounds(1050, 170, 310, 20);
         maxScBar.addAdjustmentListener(this);
         add(maxScBar);
 
         // GUI初期化(scaleX変更バー)
         scaleXScBar = new Scrollbar(Scrollbar.HORIZONTAL, 72, 1, 8, 81);
-        scaleXScBar.setBounds(1050, 350, 310, 20);
+        scaleXScBar.setBounds(1050, 270, 310, 20);
         scaleXScBar.addAdjustmentListener(this);
         add(scaleXScBar);
 
         // GUI初期化(dx変更バー)
         dxScBar = new Scrollbar(Scrollbar.HORIZONTAL, 50, 1, 1, 101);
-        dxScBar.setBounds(1050, 450, 310, 20);
+        dxScBar.setBounds(1050, 370, 310, 20);
         dxScBar.addAdjustmentListener(this);
         add(dxScBar);
 
@@ -67,7 +67,7 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
 
         // エディタ起動ボタン
         editBtn = new Button("Edit Script");
-        editBtn.setBounds(1050, 510, 310, 70);
+        editBtn.setBounds(1050, 430, 310, 70);
         editBtn.setFont(new Font("Hannotate", Font.PLAIN, 25));
         editBtn.addActionListener(this);
         add(editBtn);
@@ -93,14 +93,14 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
 
         // GUI部品の説明
         g.setColor(new Color(0, 0, 0));
-        g.drawString("Min : " + min, 1050, 130);
-        g.drawString("Max : " + max, 1050, 230);
-        g.drawString("Scale : " + scaleX, 1050, 330);
-        g.drawString("dx : " + dx, 1050, 430);
+        g.drawString("Min : " + min, 1050, 50);
+        g.drawString("Max : " + max, 1050, 150);
+        g.drawString("Scale : " + scaleX, 1050, 250);
+        g.drawString("dx : " + dx, 1050, 350);
 
         // その他
         g.setFont(new Font("TimesRoman", Font.BOLD, 40));
-        g.drawString("General Graph Plotter", 510, 50);
+        g.drawString("General Graph Plotter", 340, 50);
     }
 
     /* adjustmentValueChanged : GUIイベント受け取り */
