@@ -15,7 +15,7 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
 
     // GUI部品
     private Scrollbar minScBar, maxScBar, scaleXScBar, dxScBar;
-    private TextArea scriptArea;
+    private TextArea scriptArea, viewSArea;
     private Button editBtn;
 
     /* コンストラクタ */
@@ -58,16 +58,22 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         dxScBar.addAdjustmentListener(this);
         add(dxScBar);
 
-        // スクリプト用TextField
+        // スクリプト用TextArea
         scriptArea = new TextArea(script, 50, 50);
         scriptArea.setBounds(200, 170, 650, 500);
         scriptArea.setFont(new Font("Monaco", Font.PLAIN, 30));
         scriptArea.setVisible(false);
         add(scriptArea);
 
+        // 面積表示用TextArea
+        viewSArea = new TextArea("", 50, 50);
+        viewSArea.setBounds(1050, 510, 310, 270);
+        viewSArea.setEditable(false);
+        add(viewSArea);
+
         // エディタ起動ボタン
         editBtn = new Button("Edit Script");
-        editBtn.setBounds(1050, 430, 310, 70);
+        editBtn.setBounds(1050, 420, 310, 70);
         editBtn.setFont(new Font("Hannotate", Font.PLAIN, 25));
         editBtn.addActionListener(this);
         add(editBtn);
