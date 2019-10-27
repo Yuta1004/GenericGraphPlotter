@@ -7,18 +7,27 @@ public class ScriptParser {
 
     private String script;
     private HashMap<String, Double> var;
+    private HashMap<Integer, Boolean> vdSetting;
     private ArrayList<ExprParser> expr;
 
     /* コンストラクタ */
     public ScriptParser(String script) {
         this.script = script;
         this.var = new HashMap<String, Double>();
+        this.vdSetting = new HashMap<Integer, Boolean>();
         this.expr = new ArrayList<ExprParser>();
     }
 
     /* getGraphNum : 登録されているグラフの数を取得する */
     public int getGraphNum() {
         return expr.size();
+    }
+
+    /* getVDSetting : 数値積分の可視化設定を返す */
+    public boolean getVDSetting(int gID) {
+        if(!vdSetting.containsKey(gID))
+            return false;
+        return vdSetting.get(gID);
     }
 
     /* calcGraph : 計算を行う */
@@ -57,11 +66,12 @@ public class ScriptParser {
 
             // グラフ追加
             if(line.startsWith("plot")) {
-                line = line.substring(4, line.length());
+                line = line.split(" ")[1];
                 ExprParser ep = new ExprParser(line);
                 ep = setVar(ep);
                 ep.parse();
                 expr.add(ep);
+                vdSetting.put(expr.size()-1, line.startsWith("plotd"));
                 continue;
             }
 
