@@ -88,7 +88,9 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
 
         // スクリプト解析
         ScriptParser sp = new ScriptParser(script);
-        sp.parse();
+        try{
+            sp.parse();
+        } catch(Exception e) {} // <- 怒らないでください
 
         // グラフ & 数値積分
         int graphNum = sp.getGraphNum();
