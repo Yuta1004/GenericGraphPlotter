@@ -1,5 +1,12 @@
 # Generic Graph Plotter
 
+## コマンド
+
+```
+// run
+make JAVAC=javac APPLETVIEWER=appletviewer
+```
+
 ## 概要
 
 情報工学実験3 ソフトウェア演習 テーマ4 の制作物です。
