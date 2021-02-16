@@ -1,29 +1,23 @@
-APPLETVIEWER = ./appletviewer
-JAVAC = ./javac
-JAVA = ./java
+# 変数
+SRCS := $(wildcard *.java */*.java)
+JAVAFX_MODULES := javafx.controls,javafx.base,javafx.fxml,javafx.graphics,javafx.media,javafx.swing,javafx.web
 
-run:
-	make compile
-	make run-applet
+ARGS =
+OPTS := -p $(JAVAFX_PATH)/lib --add-modules $(JAVAFX_MODULES)
+JAVA_OPTS := $(OPTS) -classpath bin
+JAVAC_OPTS := $(OPTS) -sourcepath src -d bin
 
-compile: Main.java
-	$(JAVAC) Main.java
+# コマンド
+run: Main.class
+	cp -r src/fxml bin
+	java $(JAVA_OPTS) Main $(ARGS)
 
-run-applet: Main.java
-	$(APPLETVIEWER) Main.java
-
-run-normal:
-	$(JAVA) Main
-
-test:
-	@echo "ExprParser"
-	$(JAVAC) ESParser/ExprParserTest.java
-	$(JAVA) ESParser/ExprParserTest
-	@echo "\n"
-	@echo "ScriptParser"
-	$(JAVAC) ESParser/ScriptParserTest.java
-	$(JAVA) ESParser/ScriptParserTest
-
+Main.class: $(SRCS)
+	javac $(JAVAC_OPTS) src/Main.java
 
 clean:
-	rm -rf *.class ESParser/*.class GraphDrawer/*.class
+	rm -rf bin dist **/*.args
+
+clean-hard:
+	make clean
+	rm -rf .*.*.un* .*.un* **/.*.*.un* **/.*.un* **/**/.*.*.un* **/**/.*.un*
