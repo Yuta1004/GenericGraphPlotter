@@ -4,7 +4,7 @@
 
 ```
 // run
-make JAVAC=javac APPLETVIEWER=appletviewer
+make run
 ```
 
 ## 概要
@@ -12,11 +12,13 @@ make JAVAC=javac APPLETVIEWER=appletviewer
 情報工学実験3 ソフトウェア演習 テーマ4 の制作物です。
 入力されたスクリプトを元にグラフの描画と数値積分を行います。
 
+**追記: 2021/2/16 AppletViewerの廃止に伴い、JavaFX対応作業を行いました**
+
 ## 使用方法
 
-1. 「Edit Script」ボタンを押す。
+1. 「Script Editor」ボタンを押す。
 2. スクリプトを編集する。
-3. 「Exec Script」ボタンを押す。
+3. 「Done」ボタンを押す。
 4. スクロールバーなどを操作しグラフの描画を行う。
 
 
