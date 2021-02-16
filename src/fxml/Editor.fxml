@@ -45,7 +45,7 @@
                   </Button>
                </children>
             </HBox>
-            <TextArea prefHeight="530.0" promptText="plot &lt;&lt; sin(x) + cos(x)" wrapText="true">
+            <TextArea fx:id="scriptTArea" prefHeight="530.0" promptText="plot &lt;&lt; sin(x) + cos(x)" wrapText="true">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

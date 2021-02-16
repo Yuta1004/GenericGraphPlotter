@@ -77,7 +77,10 @@ public class MainUIController implements Initializable {
 
         editorUpBtn.setOnAction(event -> {
             EditorController controller = new EditorController();
-            genStage("Script Editor", "/fxml/Editor.fxml", controller).show();
+            controller.script = script;
+            genStage("Script Editor", "/fxml/Editor.fxml", controller).showAndWait();
+            script = controller.script;
+            draw();
         });
 
         g = canvas.getGraphicsContext2D();
