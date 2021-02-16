@@ -33,7 +33,7 @@
                         <Insets bottom="5.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Save">
+                  <Button fx:id="saveBtn" mnemonicParsing="false" text="Save">
                      <HBox.margin>
                         <Insets bottom="5.0" top="10.0" />
                      </HBox.margin>
