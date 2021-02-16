@@ -5,11 +5,16 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import javafx.stage.Modality;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
 import parser.ScriptParser;
@@ -33,6 +38,8 @@ public class MainUIController implements Initializable {
     private ScrollBar minSc, maxSc, dxSc;
     @FXML
     private Text minText, maxText, dxText;
+    @FXML
+    private Button editorUpBtn;
 
     public MainUIController() {
         originX = 100;
@@ -66,6 +73,11 @@ public class MainUIController implements Initializable {
             dx = ((int)(new_val.doubleValue()*100))/100.0;
             dxText.setText("dx: "+dx);
             draw();
+        });
+
+        editorUpBtn.setOnAction(event -> {
+            EditorController controller = new EditorController();
+            genStage("Script Editor", "/fxml/Editor.fxml", controller).show();
         });
 
         g = canvas.getGraphicsContext2D();
@@ -127,5 +139,23 @@ public class MainUIController implements Initializable {
         }
         result += yArray[yArray.length-1] * (xArray[length-1]-xArray[length-2]);
         return result;
+    }
+
+    private <T> Stage genStage(String title, String fxmlPath, T controller) {
+        // FXML読み込み
+        Scene scene = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            if(controller != null)
+                loader.setController(controller);
+            scene = new Scene(loader.load());
+        } catch (Exception e){ e.printStackTrace(); return null; }
+
+        // ダイアログ立ち上げ
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.setTitle(title);
+        return stage;
     }
 }

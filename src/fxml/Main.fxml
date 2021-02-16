@@ -80,7 +80,7 @@
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                            </padding>
                         </VBox>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" text="Script Editor">
+                        <Button fx:id="editorUpBtn" mnemonicParsing="false" prefHeight="70.0" prefWidth="300.0" text="Script Editor">
                            <font>
                               <Font size="30.0" />
                            </font>
