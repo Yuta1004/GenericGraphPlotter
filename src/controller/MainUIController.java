@@ -10,6 +10,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.text.Text;
 
 import parser.ScriptParser;
 import graph.GraphDrawer;
@@ -28,11 +30,12 @@ public class MainUIController implements Initializable {
     private Canvas canvas;
     @FXML
     private TextArea surfaceView;
+    @FXML
+    private ScrollBar minSc, maxSc, scaleSc, dxSc;
+    @FXML
+    private Text minText, maxText, scaleText, dxText;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resource) {
-        g = canvas.getGraphicsContext2D();
-
+    public MainUIController() {
         originX = 100;
         originY = 700;
         scaleX = 80; // 8.5 ~ 80
@@ -41,7 +44,28 @@ public class MainUIController implements Initializable {
         max = 10;  // 10 ~ 100
         dx = 0.5;
         script = "var a, b, c, d\na = 1.2\nb = -1.2\nc = 1.2\nd = 0.1\n\nplotd << sin(a*x + b) + cos(c*x + d) + 2";
+    }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resource) {
+        minSc.valueProperty().addListener((ov, old_val, new_val) -> {
+            min = Math.min(new_val.intValue(), max-1);
+            minSc.setValue(min);
+            draw();
+            minText.setText("Min: "+min);
+        });
+
+        maxSc.valueProperty().addListener((ov, old_val, new_val) -> {
+            max = Math.max(new_val.intValue(), min+1);
+            scaleX = 850/max;
+            maxSc.setValue(max);
+            scaleSc.setValue(scaleX);
+            draw();
+            maxText.setText("Max: "+max);
+            scaleText.setText("Scale: "+((int)scaleX));
+        });
+
+        g = canvas.getGraphicsContext2D();
         draw();
     }
 

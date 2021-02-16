@@ -26,12 +26,12 @@
                      <children>
                         <VBox spacing="10.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Min: 0">
+                              <Text fx:id="minText" strokeType="OUTSIDE" strokeWidth="0.0" text="Min: 0">
                                  <font>
                                     <Font size="25.0" />
                                  </font>
                               </Text>
-                              <ScrollBar focusTraversable="false" prefHeight="20.0" value="1.0" visibleAmount="10.0" />
+                              <ScrollBar fx:id="minSc" focusTraversable="false" prefHeight="20.0" value="1.0" visibleAmount="10.0" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
@@ -39,12 +39,12 @@
                         </VBox>
                         <VBox spacing="10.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Max: 10">
+                              <Text fx:id="maxText" strokeType="OUTSIDE" strokeWidth="0.0" text="Max: 10">
                                  <font>
                                     <Font size="25.0" />
                                  </font>
                               </Text>
-                              <ScrollBar focusTraversable="false" prefHeight="20.0" value="10.0" visibleAmount="10.0" />
+                              <ScrollBar fx:id="maxSc" focusTraversable="false" prefHeight="20.0" value="10.0" visibleAmount="10.0" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
@@ -52,12 +52,12 @@
                         </VBox>
                         <VBox spacing="10.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Scale: 80.0">
+                              <Text fx:id="scaleText" strokeType="OUTSIDE" strokeWidth="0.0" text="Scale: 80.0">
                                  <font>
                                     <Font size="25.0" />
                                  </font>
                               </Text>
-                              <ScrollBar focusTraversable="false" min="1.0" prefHeight="20.0" value="80.0" visibleAmount="10.0" />
+                              <ScrollBar fx:id="scaleSc" focusTraversable="false" min="1.0" prefHeight="20.0" value="80.0" visibleAmount="10.0" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
@@ -65,12 +65,12 @@
                         </VBox>
                         <VBox spacing="10.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="dx: 0.5">
+                              <Text fx:id="dxText" strokeType="OUTSIDE" strokeWidth="0.0" text="dx: 0.5">
                                  <font>
                                     <Font size="25.0" />
                                  </font>
                               </Text>
-                              <ScrollBar blockIncrement="0.1" focusTraversable="false" max="2.0" prefHeight="20.0" unitIncrement="0.1" value="0.5" visibleAmount="0.1" />
+                              <ScrollBar fx:id="dxSc" blockIncrement="0.1" focusTraversable="false" max="2.0" prefHeight="20.0" unitIncrement="0.1" value="0.5" visibleAmount="0.1" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
