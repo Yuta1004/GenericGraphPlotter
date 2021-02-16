@@ -1,13 +1,14 @@
+import java.io.IOException;
+
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
 
 // import graph.GraphDrawer;
 // import parser.ScriptParser;
+import controller.MainUIController;
 
 
 public class Main extends Application {
@@ -19,14 +20,13 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage stage) {
-        Group root = new Group();
+    public void start(Stage stage) throws IOException {
+        // Scene
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
+        loader.setController(new MainUIController());
+        Scene scene = new Scene(loader.load());
 
-        Canvas canvas = new Canvas(1400, 800);
-        root.getChildren().add(canvas);
-        g = canvas.getGraphicsContext2D();
-
-        Scene scene = new Scene(root, 1400, 800, Color.WHITE);
+        // Stage
         stage.setTitle("Generic Graph Plotter");
         stage.setScene(scene);
         stage.show();
