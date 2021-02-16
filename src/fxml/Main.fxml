@@ -52,19 +52,6 @@
                         </VBox>
                         <VBox spacing="10.0">
                            <children>
-                              <Text fx:id="scaleText" strokeType="OUTSIDE" strokeWidth="0.0" text="Scale: 80.0">
-                                 <font>
-                                    <Font size="25.0" />
-                                 </font>
-                              </Text>
-                              <ScrollBar fx:id="scaleSc" focusTraversable="false" min="1.0" prefHeight="20.0" value="80.0" visibleAmount="10.0" />
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                        <VBox spacing="10.0">
-                           <children>
                               <Text fx:id="dxText" strokeType="OUTSIDE" strokeWidth="0.0" text="dx: 0.5">
                                  <font>
                                     <Font size="25.0" />
@@ -83,7 +70,7 @@
                                     <Font size="25.0" />
                                  </font>
                               </Text>
-                              <TextArea fx:id="surfaceView" editable="false" prefHeight="280.0" text="A: 1000.0&#10;" wrapText="true">
+                              <TextArea fx:id="surfaceView" editable="false" prefHeight="370.0" text="A: 1000.0&#10;" wrapText="true">
                                  <font>
                                     <Font size="27.0" />
                                  </font>
