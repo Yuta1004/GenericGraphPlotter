@@ -122,8 +122,8 @@ public class MainUIController implements Initializable {
     }
 
     private double[] makeXArray(double min, double max, double diff) {
-        int length = (int)((max-min)/diff + 1);
-        length += length*diff+min == max ? 0 : 1;
+        int length = (int)((max-min)/diff)+1;
+        length += (length-1)*diff+min == max ? 0 : 1;
 
         double xArray[] = new double[length];
         for(int idx = 0; idx < length-1; ++ idx) {
@@ -137,10 +137,10 @@ public class MainUIController implements Initializable {
     private double integrate(double[] xArray, double[] yArray, double diff) {
         int length = xArray.length;
         double result = 0;
-        for(int idx = 0; idx < length; ++ idx) {
+        for(int idx = 0; idx < length-2; ++ idx) {
             result += yArray[idx] * diff;
         }
-        result += yArray[yArray.length-1] * (xArray[length-1]-xArray[length-2]);
+        result += yArray[yArray.length-2] * (xArray[length-1]-xArray[length-2]);
         return result;
     }
 
