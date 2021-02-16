@@ -1,37 +1,25 @@
 package graph;
 
-import java.awt.*;
-import java.applet.*;
 import java.util.HashMap;
+
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 public class GraphDrawer {
 
-    // Applet用
-    private Color white, black, gray;
     private Color colors[];
-    private Font font, boldFont;
-
-    // グラフ用
     private int originX, originY;
-    private double scaleX, scaleY, dx, dy;
+    private double scaleX, scaleY;
     private HashMap<Integer, GraphPlotter> graph;
 
     /* コンストラクタ */
-    public GraphDrawer(int oX, int oY, double sX, double sY, double dx, double dy) {
-        // Applet(Color)
+    public GraphDrawer(int oX, int oY, double sX, double sY) {
         colors = new Color[5];
-        colors[0] = new Color(255, 93, 93);
-        colors[1] = new Color(207, 95, 255);
-        colors[2] = new Color(93, 126, 255);
-        colors[3] = new Color(59, 173, 77);
-        colors[4] = new Color(163, 185, 0);
-        white = new Color(255, 255, 255);
-        black = new Color(0, 0, 0);
-        gray = new Color(100, 100, 100);
-
-        // Applet(Font)
-        font = new Font("TimesRoman", Font.PLAIN, 30);
-        boldFont = new Font("TimesRomas", Font.BOLD, 30);
+        colors[0] = Color.rgb(255, 93, 93);
+        colors[1] = Color.rgb(207, 95, 255);
+        colors[2] = Color.rgb(93, 126, 255);
+        colors[3] = Color.rgb(59, 173, 77);
+        colors[4] = Color.rgb(163, 185, 0);
 
         // グラフ
         graph = new HashMap<Integer, GraphPlotter>();
@@ -39,8 +27,6 @@ public class GraphDrawer {
         originY = oY;
         scaleX = sX;
         scaleY = sY;
-        this.dx = dx;
-        this.dy = dy;
     }
 
     /* addGraph : 描画グラフ追加 */
@@ -52,7 +38,7 @@ public class GraphDrawer {
     }
 
     /* draw : 描画 */
-    public void draw(Graphics2D g) {
+    public void draw(GraphicsContext g) {
         drawBase(g);
         int idx = 0;
         for(int gID: graph.keySet()) {
@@ -64,51 +50,47 @@ public class GraphDrawer {
     }
 
     /* drawBase : 描画(ベース) */
-    private void drawBase(Graphics2D g) {
+    private void drawBase(GraphicsContext g) {
         // 線の太さ, 色
-        g.setFont(boldFont);
-        g.setColor(black);
-        g.setStroke(new BasicStroke(3));
+        g.setStroke(Color.BLACK);
+        g.setLineWidth(3.0);
 
         // 原点
-        g.drawString("o", originX-50, originY+50);
+        g.strokeText("0", originX-50, originY+50);
 
         // 軸(x) 700
-        g.drawLine(originX-50, originY, originX+900, originY);
-        g.drawLine(originX+880, originY-10, originX+900, originY);
-        g.drawLine(originX+880, originY+10, originX+900, originY);
-        g.drawString("x", originX+900, originY+70);
+        g.strokeLine(originX-50, originY, originX+900, originY);
+        g.strokeLine(originX+880, originY-10, originX+900, originY);
+        g.strokeLine(originX+880, originY+10, originX+900, originY);
+        g.strokeText("x", originX+900, originY+70);
 
         // 軸(y) 500
-        g.drawLine(originX, originY+50, originX, originY-600);
-        g.drawLine(originX-10, originY-580, originX, originY-600);
-        g.drawLine(originX+10, originY-580, originX, originY-600);
-        g.drawString("y", originX-70, originY-600);
-
-        // 補助線
-        g.setStroke(new BasicStroke(2));
-        g.setFont(font);
+        g.strokeLine(originX, originY+50, originX, originY-600);
+        g.strokeLine(originX-10, originY-580, originX, originY-600);
+        g.strokeLine(originX+10, originY-580, originX, originY-600);
+        g.strokeText("y", originX-70, originY-600);
 
         // 補助線(x)
+        g.setLineWidth(2);
         for(int x = 1; x*scaleX <= 870; ++ x) {
             int drawX = (int)(x*scaleX) + originX;
             int size = helperLineSize(x);
-            g.drawLine(drawX, originY-size, drawX, originY+size);
+            g.strokeLine(drawX, originY-size, drawX, originY+size);
             if(x % 10 == 0)
-                g.drawString(String.valueOf(x), drawX-10, originY+50);
+                g.strokeText(String.valueOf(x), drawX-10, originY+50);
         }
 
         // 補助線(y)
         for(int y = 1; y*scaleY <= 570; ++ y) {
             int drawY = originY - (int)(y*scaleY);
             int size = helperLineSize(y);
-            g.setColor(black);
-            g.setStroke(new BasicStroke(2));
-            g.drawLine(originX-size, drawY, originX+size, drawY);
-            g.setColor(gray);
-            g.setStroke(new BasicStroke(1));
-            g.drawLine(originX, drawY, originX+900, drawY);
-            g.drawString(String.valueOf(y), originX-50, drawY+12);
+            g.setStroke(Color.BLACK);
+            g.setLineWidth(2);
+            g.strokeLine(originX-size, drawY, originX+size, drawY);
+            g.setStroke(Color.GRAY);
+            g.setLineWidth(1);
+            g.strokeLine(originX, drawY, originX+900, drawY);
+            g.strokeText(String.valueOf(y), originX-50, drawY+12);
         }
 
         // 凡例(2段組)
@@ -116,10 +98,10 @@ public class GraphDrawer {
         for(int gID: graph.keySet()) {
             int x = (originX+650) + idx%2*140;
             int y = (originY-520) + idx/2*50;
-            g.setColor(colors[idx%5]);
-            g.setStroke(new BasicStroke(5));
-            g.drawLine(x, y, x+50, y);
-            g.drawString(String.valueOf((char)('A'+gID)), x+70, y+10);
+            g.setStroke(colors[idx%5]);
+            g.setLineWidth(5);
+            g.strokeLine(x, y, x+50, y);
+            g.strokeText(String.valueOf((char)('A'+gID)), x+70, y+10);
             ++ idx;
         }
     }
