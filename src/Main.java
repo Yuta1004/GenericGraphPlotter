@@ -6,8 +6,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-// import GraphDrawer.GraphDrawer;
-// import ESParser.ScriptParser;
+// import graph.GraphDrawer;
+// import parser.ScriptParser;
 
 
 public class Main extends Application {

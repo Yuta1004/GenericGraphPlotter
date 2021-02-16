@@ -1,4 +1,4 @@
-package GraphDrawer;
+package graph;
 
 import java.awt.*;
 import java.applet.*;

@@ -1,4 +1,4 @@
-package ESParser;
+package parser;
 
 enum NodeKind {
     /* 値 */

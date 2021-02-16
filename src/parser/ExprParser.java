@@ -1,4 +1,4 @@
-package ESParser;
+package parser;
 
 import java.util.HashMap;
 import java.util.regex.Pattern;

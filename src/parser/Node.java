@@ -1,4 +1,4 @@
-package ESParser;
+package parser;
 
 class Node {
     public Node left, right;
