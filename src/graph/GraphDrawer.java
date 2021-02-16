@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class GraphDrawer {
 
@@ -54,6 +55,7 @@ public class GraphDrawer {
         // 線の太さ, 色
         g.setStroke(Color.BLACK);
         g.setLineWidth(3.0);
+        g.setFont(new Font(30.0));
 
         // 原点
         g.strokeText("0", originX-50, originY+50);
@@ -76,8 +78,10 @@ public class GraphDrawer {
             int drawX = (int)(x*scaleX) + originX;
             int size = helperLineSize(x);
             g.strokeLine(drawX, originY-size, drawX, originY+size);
-            if(x % 10 == 0)
+            if(x % 10 == 0) {
+                g.setLineWidth(1);
                 g.strokeText(String.valueOf(x), drawX-10, originY+50);
+            }
         }
 
         // 補助線(y)
@@ -99,7 +103,7 @@ public class GraphDrawer {
             int x = (originX+650) + idx%2*140;
             int y = (originY-520) + idx/2*50;
             g.setStroke(colors[idx%5]);
-            g.setLineWidth(5);
+            g.setLineWidth(2);
             g.strokeLine(x, y, x+50, y);
             g.strokeText(String.valueOf((char)('A'+gID)), x+70, y+10);
             ++ idx;
