@@ -39,6 +39,8 @@ public class EditorController implements Initializable {
         presets.put("Constant2", "plotd << 2");
         presets.put("SinWave1", "var theta, bias\ntheta = 1\nbias = 1\n\nplot << sin(theta*x) + bias");
         presets.put("SinWave2", "var theta, bias\ntheta = 1\nbias = 1\n\nplotd << sin(theta*x) + bias");
+        presets.put("MultipleWave1", "var i, delay\ni = 1\ndelay = 0\n\nloop: i < 5\n    delay = i * PI/4\n    plot << 2*sin(x+delay) + 2\n    i = i+1\nend");
+        presets.put("MultipleWave2", "var i, delay\ni = 1\ndelay = 0\n\nloop: i < 5\n    delay = i * PI/4\n    plotd << 2*sin(x+delay) + 2\n    i = i+1\nend");
     }
 
     @Override
