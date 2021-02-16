@@ -1,7 +1,6 @@
 package controller;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
