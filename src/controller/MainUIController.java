@@ -94,7 +94,7 @@ public class MainUIController implements Initializable {
         GraphDrawer gd = new GraphDrawer(originX, originY, scaleX, scaleY);
         for(int idx = 0; idx < graphNum; ++ idx) {
             yArray = sp.calcGraph(idx, xArray);
-            sList[idx] = Arrays.stream(yArray).sum() * dx;
+            sList[idx] = integrate(xArray, yArray, dx);
             gd.addGraph(idx, xArray, yArray, sp.getVDSetting(idx));
         }
         gd.draw(g);
@@ -107,10 +107,25 @@ public class MainUIController implements Initializable {
     }
 
     private double[] makeXArray(double min, double max, double diff) {
-        double xArray[] = new double[(int)((max - min) / diff)+1];
-        for(int idx = 0; idx < xArray.length; ++ idx) {
+        int length = (int)((max-min)/diff + 1);
+        length += length*diff+min == max ? 0 : 1;
+
+        double xArray[] = new double[length];
+        for(int idx = 0; idx < length-1; ++ idx) {
             xArray[idx] = idx * diff + min;
         }
+        xArray[length-1] = max;
+
         return xArray;
+    }
+
+    private double integrate(double[] xArray, double[] yArray, double diff) {
+        int length = xArray.length;
+        double result = 0;
+        for(int idx = 0; idx < length; ++ idx) {
+            result += yArray[idx] * diff;
+        }
+        result += yArray[yArray.length-1] * (xArray[length-1]-xArray[length-2]);
+        return result;
     }
 }
