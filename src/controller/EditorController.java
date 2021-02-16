@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Button;
 
 public class EditorController implements Initializable {
 
@@ -18,6 +19,8 @@ public class EditorController implements Initializable {
     private TextArea scriptTArea;
     @FXML
     private ChoiceBox<String> presetChoice;
+    @FXML
+    private Button doneBtn;
 
     public EditorController() {
         presets = new HashMap<String, String>();
@@ -30,6 +33,8 @@ public class EditorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resource) {
+        doneBtn.setOnAction(event -> doneBtn.getScene().getWindow().hide() );
+
         presetChoice.getItems().addAll(presets.keySet());
         presetChoice.valueProperty().addListener((ov, old_val, new_val) -> {
             script = presets.get(new_val);
