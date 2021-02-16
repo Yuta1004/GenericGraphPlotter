@@ -1,26 +1,53 @@
-import java.awt.*;
-import java.awt.event.*;
-import java.applet.*;
-import java.io.*;
-import java.util.stream.Collectors;
-import GraphDrawer.GraphDrawer;
-import ESParser.ScriptParser;
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
-/* <applet code="Main.class" width="1400" height="800"></applet> */
+// import GraphDrawer.GraphDrawer;
+// import ESParser.ScriptParser;
 
-public class Main extends Applet implements AdjustmentListener, ActionListener {
+
+public class Main extends Application {
+
+    private GraphicsContext g;
+
+    public static void main(String args[]) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) {
+        Group root = new Group();
+
+        Canvas canvas = new Canvas(1400, 800);
+        root.getChildren().add(canvas);
+        g = canvas.getGraphicsContext2D();
+
+        Scene scene = new Scene(root, 1400, 800, Color.WHITE);
+        stage.setTitle("Generic Graph Plotter");
+        stage.setScene(scene);
+        stage.show();
+    }
 
     // グラフ描画用
+    /*
     private int originX, originY, min, max;
     private double scaleX, scaleY, dx, dy;
     String script;
+    */
 
     // GUI部品
+    /*
     private Scrollbar minScBar, maxScBar, scaleXScBar, dxScBar;
     private TextArea scriptArea, viewSArea, helpVArea;
     private Button editBtn, helpBtn;
+    */
 
     /* コンストラクタ */
+    /*
     public Main() {
         originX = 100;
         originY = 700;
@@ -32,8 +59,10 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         dy = 1.0;
         script = "var a, b, c, d\na = 1.2\nb = -1.2\nc = 1.2\nd = 0.1\n\nplotd << sin(a*x + b) + cos(c*x + d) + 2";
     }
+    */
 
     /* init : Applet初期化 */
+    /*
     public void init() {
         // GUI初期化(min変更バー)
         setLayout(null);
@@ -96,8 +125,10 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         helpVArea.setVisible(false);
         add(helpVArea);
     }
+    */
 
     /* paint : Applet描画 */
+    /*
     public void paint(Graphics g) {
         // 背景
         g.setColor(new Color(255, 255, 255));
@@ -152,8 +183,10 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
             g.fillRect(120, 90, 820, 670);
         }
     }
+    */
 
     /* adjustmentValueChanged : GUIイベント受け取り */
+    /*
     public void adjustmentValueChanged(AdjustmentEvent e) {
         // 値取得
         int oldMax = max;
@@ -172,8 +205,10 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         scaleXScBar.setValue((int)scaleX);
         repaint();
     }
+    */
 
     /* actionPerformed : GUIイベント受取 */
+    /*
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()) {
         case "Exec Script":
@@ -193,8 +228,10 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         }
         repaint();
     }
+    */
 
     /* makeXArray : xの値をとる配列を生成する */
+    /*
     private double[] makeXArray(double min, double max, double diff) {
         double xArray[] = new double[(int)((max - min) / diff)+1];
         for(int idx = 0; idx < xArray.length; ++ idx) {
@@ -202,8 +239,10 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         }
         return xArray;
     }
+    */
 
     /* numIntegration : 数値積分を行いその結果を返す */
+    /*
     private double numIntegration(double dx, double yArray[]) {
         double sum = 0;
         for(int idx = 0; idx < yArray.length-1; ++ idx) {
@@ -211,8 +250,10 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         }
         return sum * dx;
     }
+    */
 
     /* getHelp : ヘルプを返す */
+    /*
     private String getHelp() {
         String readme;
         try {
@@ -225,5 +266,6 @@ public class Main extends Applet implements AdjustmentListener, ActionListener {
         }
         return readme;
     }
+    */
 
 }
