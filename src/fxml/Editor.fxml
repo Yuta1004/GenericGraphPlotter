@@ -28,7 +28,7 @@
                         <Insets bottom="5.0" top="10.0" />
                      </HBox.margin>
                   </ChoiceBox>
-                  <Button mnemonicParsing="false" text="Load">
+                  <Button fx:id="loadBtn" mnemonicParsing="false" text="Load">
                      <HBox.margin>
                         <Insets bottom="5.0" top="10.0" />
                      </HBox.margin>
