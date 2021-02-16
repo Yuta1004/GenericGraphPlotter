@@ -6,4 +6,4 @@ javac
 *.swp
 
 .DS_Store
-
+.vscode/
