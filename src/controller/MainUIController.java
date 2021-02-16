@@ -58,6 +58,7 @@ public class MainUIController implements Initializable {
             max = Math.max(new_val.intValue(), min+1);
             scaleX = 850/max;
             maxSc.setValue(max);
+            maxText.setText("Max: "+max);
             draw();
         });
 
