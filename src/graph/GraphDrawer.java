@@ -80,7 +80,7 @@ public class GraphDrawer {
             g.strokeLine(drawX, originY-size, drawX, originY+size);
             if(x % 10 == 0) {
                 g.setLineWidth(1);
-                g.strokeText(String.valueOf(x), drawX-10, originY+50);
+                g.strokeText(String.valueOf(x), drawX-15, originY+50);
             }
         }
 
