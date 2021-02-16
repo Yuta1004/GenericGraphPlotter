@@ -57,7 +57,7 @@
                                     <Font size="25.0" />
                                  </font>
                               </Text>
-                              <ScrollBar fx:id="dxSc" blockIncrement="0.1" focusTraversable="false" max="2.0" prefHeight="20.0" unitIncrement="0.1" value="0.5" visibleAmount="0.1" />
+                              <ScrollBar fx:id="dxSc" blockIncrement="0.1" focusTraversable="false" max="2.0" min="0.01" prefHeight="20.0" unitIncrement="0.1" value="0.5" visibleAmount="0.1" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />

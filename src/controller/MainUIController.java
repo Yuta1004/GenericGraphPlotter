@@ -62,6 +62,12 @@ public class MainUIController implements Initializable {
             draw();
         });
 
+        dxSc.valueProperty().addListener((ov, old_val, new_val) -> {
+            dx = ((int)(new_val.doubleValue()*100))/100.0;
+            dxText.setText("dx: "+dx);
+            draw();
+        });
+
         g = canvas.getGraphicsContext2D();
         draw();
     }
