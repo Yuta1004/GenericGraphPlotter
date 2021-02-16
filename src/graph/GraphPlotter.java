@@ -1,14 +1,14 @@
 package graph;
 
-import java.awt.*;
-import java.applet.*;
+import javafx.scene.paint.Color;
+import javafx.scene.canvas.GraphicsContext;
 
 class GraphPlotter {
 
-    private int originX, originY, stroke;
-    private double scaleX, scaleY;
+    private int originX, originY;
+    private double scaleX, scaleY, stroke;
     private double xArray[], yArray[];
-    private Color color, blackClear, grayClear;
+    private Color color;
     private boolean viewDetail;
 
     /* コンストラクタ */
@@ -17,9 +17,8 @@ class GraphPlotter {
         originY = oY;
         scaleX = sX;
         scaleY = sY;
-        color = new Color(255, 100, 100);
-        blackClear = new Color(0, 0, 0, 100);
-        grayClear = new Color(100, 100, 100, 100);
+        stroke = 1.0;
+        color = Color.rgb(255, 100, 100);
         viewDetail = false;
     }
 
@@ -30,11 +29,11 @@ class GraphPlotter {
 
     /* setColor(int r, int g, int b) : 色指定(RGB) */
     public void setColor(int r, int g, int b) {
-        color = new Color(r, g, b);
+        color = Color.rgb(r, g, b);
     }
 
     /* setStroke : 線の太さ指定 */
-    public void setStroke(int s) {
+    public void setStroke(double s) {
         stroke = s;
     }
 
@@ -50,7 +49,7 @@ class GraphPlotter {
     }
 
     /* plot : グラフ描画 */
-    public void plot(Graphics2D g) {
+    public void plot(GraphicsContext g) {
         int x0, y0, x1, y1;
         int size = Math.min(xArray.length, yArray.length);
 
@@ -60,17 +59,17 @@ class GraphPlotter {
             y0 = g2aY(yArray[idx]);
             x1 = g2aX(xArray[idx+1]);
             y1 = g2aY(yArray[idx+1]);
-            g.setStroke(new BasicStroke(stroke));
-            g.setColor(color);
-            g.drawLine(x0, y0, x1, y1);
+            g.setLineWidth(stroke);
+            g.setFill(color);
+            g.strokeLine(x0, y0, x1, y1);
 
             // 数値積分可視化
             if(viewDetail) {
-                g.setStroke(new BasicStroke(2));
-                g.setColor(blackClear);
-                g.drawRect(x0, y0, x1-x0, originY-y0);
-                g.setStroke(new BasicStroke(1));
-                g.setColor(grayClear);
+                g.setLineWidth(2);
+                g.setStroke(Color.BLACK);
+                g.rect(x0, y0, x1-x0, originY-y0);
+                g.setLineWidth(1);
+                g.setFill(Color.GRAY);
                 g.fillRect(x0, y0, x1-x0, originY-y0);
             }
         }
