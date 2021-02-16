@@ -54,24 +54,24 @@ class GraphPlotter {
         int size = Math.min(xArray.length, yArray.length);
 
         for(int idx = 0; idx < size-1; ++ idx) {
-            // グラフ
             x0 = g2aX(xArray[idx]);
             y0 = g2aY(yArray[idx]);
             x1 = g2aX(xArray[idx+1]);
             y1 = g2aY(yArray[idx+1]);
-            g.setLineWidth(stroke);
-            g.setFill(color);
-            g.strokeLine(x0, y0, x1, y1);
 
             // 数値積分可視化
             if(viewDetail) {
+                g.setFill(Color.rgb(100, 100, 100, 0.3));
+                g.fillRect(x0, y0, x1-x0, originY-y0);
                 g.setLineWidth(2);
                 g.setStroke(Color.BLACK);
-                g.rect(x0, y0, x1-x0, originY-y0);
-                g.setLineWidth(1);
-                g.setFill(Color.GRAY);
-                g.fillRect(x0, y0, x1-x0, originY-y0);
+                g.strokeRect(x0, y0, x1-x0, originY-y0);
             }
+
+            // グラフ
+            g.setLineWidth(stroke);
+            g.setStroke(color);
+            g.strokeLine(x0, y0, x1, y1);
         }
     }
 
