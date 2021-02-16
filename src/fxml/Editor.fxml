@@ -23,7 +23,7 @@
                      </font>
                   </Text>
                   <Pane prefWidth="210.0" />
-                  <ChoiceBox prefWidth="150.0">
+                  <ChoiceBox fx:id="presetChoice" prefWidth="150.0">
                      <HBox.margin>
                         <Insets bottom="5.0" top="10.0" />
                      </HBox.margin>
